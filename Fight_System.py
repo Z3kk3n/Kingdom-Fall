@@ -1,11 +1,20 @@
 import Class_Character
 import FS_Engine
-import os,random
+import os,sys,time,random
+
+def slow_type(text,typing_speed= 100,new_line=True):
+
+    for letter in text:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(random.random()*10.0/typing_speed)
+    if new_line:
+        print ('')
 
 os.system('cls')
-print('Welcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
-print('NOTE: Game is NOT capital letter dependent. You can also type the number associated with the option.')
-game_start=input("\nReady to battle? Type 'Fight'!"+'\n'+'>')
+slow_type('Welcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
+print('\nNOTE: Game is NOT capital letter dependent. You can also type the number associated with the option.')
+game_start=input("Ready to battle? Type 'Fight'!"+'\n'+'>')
 
 if game_start == 'Fight'or game_start == 'fight':
 
@@ -23,6 +32,7 @@ if game_start == 'Fight'or game_start == 'fight':
                 if index == selection:
                     player1= Class_Character.playable[ftype]
         except ValueError:
+            selection=selection.capitalize()
             if selection in Class_Character.playable:
                 player1= Class_Character.playable[selection]
         while True:

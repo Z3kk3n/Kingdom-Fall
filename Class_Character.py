@@ -13,7 +13,7 @@ class fighter:
         self.stam=stamina
         self.atk_useable={}
         self.selected_atk=None
-        self.consumable={"HP Potion":inv_item('HP Potion','Heals charater for 10 HP.')}
+        self.consumable={"Hp Potion":inv_item('HP Potion','Heals charater for 10 HP.')}
         self.selected_item=None
         self.initiative=False
 
@@ -31,7 +31,7 @@ class attack:
 
 
 #Inventory Items
-hp_potion=inv_item('HP Potion','Heals charater for half of missing HP.')
+hp_potion=inv_item('Hp Potion','Heals charater for half of missing HP.')
 
 #Attacks
 slash=attack('Slash','Basic attack. Deals 7 true damage.',7,10)
@@ -94,7 +94,7 @@ playable2['Mage']=mage2
 
 
 consumable={}
-consumable['HP Potion']=hp_potion
+consumable['Hp Potion']=hp_potion
 
 #useable={}
 #useable['Slash']=slash
