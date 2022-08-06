@@ -1,5 +1,4 @@
 # if __name__=='main':
-print("this is main")
 class fighter:
     def __init__(self,name,description,base_hp,hit_points,base_attack,attack,base_defense,defense,speed,stamina,) -> None:
         self.name=name
