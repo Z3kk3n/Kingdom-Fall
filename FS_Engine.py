@@ -18,7 +18,7 @@ f_action={'Slash':'slash_attack',
 'Arrow':'arrow_attack',
 'Fireball':'fireball_attack'}
 
-consumableact={'Hp Potion':'hp_consumable'}
+consumableact={'HP Potion':'hp_consumable'}
 
 #Fight Actions
 def slash_attack(player,oplayer) -> None:
@@ -73,7 +73,6 @@ def Inv(player,oplayer) -> None:
                 selected_item= player.consumable[item]
                 return selected_item
     except ValueError:
-        selection=selection.capitalize()
         if selection in player.consumable:
             selected_item= player.consumable[selection]
             return selected_item
