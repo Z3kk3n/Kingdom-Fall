@@ -14,7 +14,7 @@ def slow_type(text,typing_speed= 100,new_line=True):
 os.system('cls')
 slow_type('Welcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
 print('\nNOTE: Game is NOT capital letter dependent. You can also type the number associated with the option.')
-game_start=input("Ready to battle? Type 'Fight'!"+'\n'+'>')
+game_start=input("Ready to battle? Type 'Fight'!\n>")
 
 if game_start == 'Fight'or game_start == 'fight':
 
