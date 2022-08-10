@@ -1,5 +1,6 @@
 import Class_Character
 import FS_Engine
+import msvcrt
 import os,sys,time,random
 
 def slow_type(text,typing_speed= 100,new_line=True):
@@ -10,11 +11,20 @@ def slow_type(text,typing_speed= 100,new_line=True):
         time.sleep(random.random()*10.0/typing_speed)
     if new_line:
         print ('')
+    while msvcrt.kbhit():
+        msvcrt.getch()
 
 os.system('cls')
-slow_type('Welcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
+slow_type('\nWelcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
 print('\nNOTE: Game is NOT capital letter dependent. You can also type the number associated with the option.')
-game_start=input("Ready to battle? Type 'Fight'!\n>")
+
+while True:
+    game_start=input("Ready to battle? Type 'Fight'!\n>")
+    if game_start=='Fight' or game_start=='fight' or game_start=='test':
+        break
+    else:
+        pass
+
 
 if game_start == 'Fight'or game_start == 'fight':
 
@@ -41,7 +51,7 @@ if game_start == 'Fight'or game_start == 'fight':
 
             if playercheck == 'Yes' or playercheck == 'yes':
                 break
-            if playercheck == 'No' or playercheck == 'no':
+            elif playercheck == 'No' or playercheck == 'no':
                 player1=None
                 break
             else:
@@ -91,10 +101,12 @@ else:
     exit()
 
 turn=0
+player_list=[player1,player2]
 while  True:
     turn+=1
-    player1.stam + 10
-    player2.stam + 10
+    player1.stam += 10
+    player1.stam = min(player1.stam + 10,100)
+    player2.stam += 10
     player1.selected_item = None
     player2.selected_item = None
     player1.selected_atk = None
@@ -160,7 +172,7 @@ while  True:
 
     if player1.spd==player2.spd:
         player1.initiative,player2.initiative=False,False
-        choice = random.choice(player1,player2)
+        choice = random.choice(player_list)
         choice.initiative=True
     else:
         if player1.spd>player2.spd:
@@ -217,6 +229,24 @@ while  True:
                 break
             else:
                 pass
+
+    if player1.burning==True or player2.burning==True or player1.deflecting==True or player2.deflecting==True:
+        if player1.initiative:
+            os.system('cls')
+            print('/nPlayer 1:')
+            player1.update()
+            print('/nPlayer 2:')
+            player2.update()
+            time.sleep(4)
+        else:
+            os.system('cls')
+            print('\nPlayer 2:')
+            player2.update()
+            print('\nPlayer 1:')
+            player1.update()
+            time.sleep(4)
+    else:
+        pass
 
 os.system('cls')
 if player1.HP <= 0:

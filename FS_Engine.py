@@ -1,4 +1,5 @@
 from logging import PlaceHolder
+import string
 import Class_Character
 
 #Holds most dictionaries and functions.
@@ -16,32 +17,61 @@ action={'Fight':'Fight_Opp','fight':'Fight_Opp','1':'Fight_Opp',
 
 f_action={'Slash':'slash_attack',
 'Arrow':'arrow_attack',
-'Fireball':'fireball_attack'}
+'Fireball':'fireball_attack',
+'Sword Tackle':'sword_tackle_attack',
+'Fire Slash':'fire_slash_attack',
+'Shield Bash':'shield_bash_attack'}
 
-consumableact={'HP Potion':'hp_consumable'}
+consumableact={'Hp Potion':'hp_consumable'}
 
 #Fight Actions
 def slash_attack(player,oplayer) -> None:
     print('You strike with your blade.')
     oplayer.HP = oplayer.HP - 7
-    player.stam - Class_Character.slash.stam_use
+    player.stam -= Class_Character.slash.stam_use
     print('Player Stamina - 10')
     print('Opposing player HP - 7\n')
 
 def arrow_attack(player,oplayer) -> None:
     print('You draw back and release a perfect shot.')
     oplayer.HP = oplayer.HP - 7
-    player.stam - Class_Character.slash.stam_use
+    player.stam -= Class_Character.slash.stam_use
     print('Player Stamina - 10')
     print('Opposing player HP - 7\n')
 
 def fireball_attack(player,oplayer) -> None:
     print('You attack with a fiery passion.')
     oplayer.HP = oplayer.HP - 7
-    player.stam - Class_Character.slash.stam_use
-    print('Player Stamina - 10')
+    player.stam -= Class_Character.slash.stam_use
+    print('Player Stamina - 15')
     print('Opposing player HP - 7\n')
+    oplayer.burn(4)
 
+#Warrior Attack Functions
+def sword_tackle_attack(player,oplayer) -> None:
+    dmg = Class_Character.sword_tackle.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.sword_tackle.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.sword_tackle.stam_use}\n')
+
+def fire_slash_attack(player,oplayer) -> None:
+    dmg = Class_Character.fire_slash.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.fire_slash.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.sword_tackle.stam_use}\n')
+
+def shield_bash_attack(player,oplayer) -> None:
+    dmg = Class_Character.shield_bash.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.shield_bash.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.shield_bash.stam_use}\n')
+    player.deflect(1)
 
 #Consumable Actions
 def hp_consumable(player):
@@ -49,7 +79,6 @@ def hp_consumable(player):
 
     health = player.b_HP - player.HP
     health = health/2
-    round(health)
     player.HP = player.HP + health
 
     print(f'HP + {health}\n')
@@ -73,6 +102,7 @@ def Inv(player,oplayer) -> None:
                 selected_item= player.consumable[item]
                 return selected_item
     except ValueError:
+        selection=string.capwords(selection)
         if selection in player.consumable:
             selected_item= player.consumable[selection]
             return selected_item
@@ -94,7 +124,7 @@ def Fight_Opp(player,oplayer) -> None:
                 selected_atk= player.atk_useable[attack]
                 return selected_atk
     except ValueError:
-        selectionA=selectionA.capitalize()
+        selectionA=string.capwords(selectionA)
         if selectionA in player.atk_useable:
             selected_atk= player.atk_useable[selectionA]
             return selected_atk

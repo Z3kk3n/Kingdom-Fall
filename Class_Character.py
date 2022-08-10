@@ -1,4 +1,6 @@
 # if __name__=='main':
+import random
+
 class fighter:
     def __init__(self,name,description,base_hp,hit_points,base_attack,attack,base_defense,defense,speed,stamina,) -> None:
         self.name=name
@@ -13,9 +15,41 @@ class fighter:
         self.stam=stamina
         self.atk_useable={}
         self.selected_atk=None
-        self.consumable={"HP Potion":inv_item('HP Potion','Heals charater for 10 HP.')}
+        self.consumable={"Hp Potion":inv_item('Hp Potion','Heals charater for half of missing HP.')}
         self.selected_item=None
         self.initiative=False
+        self.burning=False
+        self.turn_of_burn=0
+        self.deflecting=False
+        self.turn_of_deflect=0
+
+    def update(self):
+        if self.burning:
+            self.burn()
+        if self.deflect:
+            self.deflect()
+
+    def burn(self,turn_of_burn=False):
+        if turn_of_burn:
+            self.turn_of_burn=turn_of_burn
+            self.burning=True
+        else:
+            self.HP-=3
+            self.turn_of_burn-=1
+            if self.turn_of_burn<=0:
+                self.burning=False
+
+    def deflect(self,turn_of_deflect=False):
+        if turn_of_deflect:
+            self.turn_of_deflect=turn_of_deflect
+            self.deflecting=True
+        else:
+            if random.randrange(1,100)<=40:
+                print('You block 5 damage.')
+                self.HP+=5
+            self.turn_of_deflect-=1
+            if self.turn_of_deflect<=0:
+                self.deflecting=False
 
 class inv_item:
     def __init__(self,name,description) -> None:
@@ -23,22 +57,24 @@ class inv_item:
         self.desc=description
 
 class attack:
-    def __init__(self,name,description,base_dmg,stamina_useage) -> None:
+    def __init__(self,name,description,base_dmg,stamina_useage,turn_cooldown = 0) -> None:
         self.name=name
         self.desc=description
         self.base_dmg=base_dmg
         self.stam_use=stamina_useage
-
+        self.TCD=turn_cooldown
 
 #Inventory Items
-hp_potion=inv_item('HP Potion','Heals charater for half of missing HP.')
+hp_potion=inv_item('Hp Potion','Heals charater for half of missing HP.')
 
-#Attacks
-slash=attack('Slash','Basic attack. Deals 7 true damage.',7,10)
-fireball=attack('Fireball','Basic attack. Deals 7 true damage.',7,10)
-arrow=attack('Arrow','Basic attack. Deals 7 true damage',7,10)
-
-
+#Basic Attacks
+slash=attack('Slash','Basic attack. Deals 7 true damage.',7,15)
+fireball=attack('Fireball','Basic attack. Deals 7 true damage.',7,15)
+arrow=attack('Arrow','Basic attack. Deals 7 true damage',7,15)
+#Warrior Attacks
+sword_tackle=attack('Sword Tackle','Recklessly tackle with your sword.',15,25,turn_cooldown=1)
+fire_slash=attack('Fire Slash','You light your sword ablaze.',25,35,turn_cooldown=2)
+shield_bash=attack('Shield Bash','You feel the bash of the shield, it shakes your arm.',20,30,turn_cooldown=2)
 
 
 #Character Classes
@@ -46,6 +82,12 @@ warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,
 warrior2=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100)
 warrior.atk_useable['Slash']=slash
 warrior2.atk_useable['Slash']=slash
+warrior.atk_useable['Sword Tackle']=sword_tackle
+warrior2.atk_useable['Sword Tackle']=sword_tackle
+warrior.atk_useable['Fire Slash']=fire_slash
+warrior2.atk_useable['Fire Slash']=fire_slash
+warrior.atk_useable['Shield Bash']=shield_bash
+warrior2.atk_useable['Shield Bash']=shield_bash
 
 paladin=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80)
 paladin2=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80)
@@ -94,7 +136,4 @@ playable2['Mage']=mage2
 
 
 consumable={}
-consumable['HP Potion']=hp_potion
-
-#useable={}
-#useable['Slash']=slash
+consumable['Hp Potion']=hp_potion
