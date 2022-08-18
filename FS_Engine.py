@@ -22,7 +22,10 @@ f_action={'Slash':'slash_attack',
 'Fire Slash':'fire_slash_attack',
 'Shield Bash':'shield_bash_attack'}
 
-consumableact={'Hp Potion':'hp_consumable'}
+consumableact={'Hp Potion':'hp_consumable',
+'Attack Potion':'atk_consumable',
+'Defense Potion':'defn_consumable',
+'Speed Potion':'spd_consumable'}
 
 #Fight Actions
 def slash_attack(player,oplayer) -> None:
@@ -55,6 +58,7 @@ def sword_tackle_attack(player,oplayer) -> None:
     player.stam -= Class_Character.sword_tackle.stam_use
     print(f'You deal {dmg} damage.')
     print(f'Stamina - {Class_Character.sword_tackle.stam_use}\n')
+    # player.ST_cooldown(1)
 
 def fire_slash_attack(player,oplayer) -> None:
     dmg = Class_Character.fire_slash.base_dmg * player.atk / oplayer.defn / 4
@@ -83,6 +87,20 @@ def hp_consumable(player):
 
     print(f'HP + {health}\n')
 
+def atk_consumable(player):
+    print('You feel the power trikle down your thoat.')
+    player.methattack(2)
+    print('Attack + 5\n')
+
+def defn_consumable(player):
+    print('You feel a liquid like iron trikle down your thoat.')
+    player.methdefense(2)
+    print('Defense + 2\n')
+
+def spd_consumable(player):
+    print('You drink the liquid lightning quick.')
+    player.methspeed(2)
+    print('Speed x 2\n')
 
 #Main Actions
 def Inv(player,oplayer) -> None:
@@ -128,8 +146,6 @@ def Fight_Opp(player,oplayer) -> None:
         if selectionA in player.atk_useable:
             selected_atk= player.atk_useable[selectionA]
             return selected_atk
-
-#Need to make curent and opposing players first then this will work.
 
 def Stat(player,oplayer) -> None:
     print(f'HP: {player.HP}')

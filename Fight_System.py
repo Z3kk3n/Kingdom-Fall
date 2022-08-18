@@ -15,7 +15,7 @@ def slow_type(text,typing_speed= 100,new_line=True):
         msvcrt.getch()
 
 os.system('cls')
-slow_type('\nWelcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
+print('\nWelcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
 print('\nNOTE: Game is NOT capital letter dependent. You can also type the number associated with the option.')
 
 while True:
@@ -102,15 +102,20 @@ else:
 
 turn=0
 player_list=[player1,player2]
-while  True:
+while True:
     turn+=1
     player1.stam += 10
-    player1.stam = min(player1.stam + 10,100)
+    player1.stam = min(player1.stam,player1.max_stam)
     player2.stam += 10
+    player2.stam = min(player2.stam,player2.max_stam)
+
     player1.selected_item = None
     player2.selected_item = None
     player1.selected_atk = None
     player2.selected_atk = None
+
+    player1.cooldown_update()
+    player2.cooldown_update()
 
     while True:
         os.system('cls')
@@ -168,7 +173,8 @@ while  True:
             del player2.consumable[player2.selected_item.name]
         input('Press ENTER to continue.')
 
-
+    player1.consumable_update()
+    player2.consumable_update()
 
     if player1.spd==player2.spd:
         player1.initiative,player2.initiative=False,False
