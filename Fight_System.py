@@ -34,17 +34,24 @@ if game_start == 'Fight'or game_start == 'fight':
         player1=None
         for index,ftype in enumerate(Class_Character.playable):
             print(f'[{index+1}] {ftype}')
-
-        selection=input('>')
-        try:
-            selection = int(selection)-1
-            for index,ftype in enumerate(Class_Character.playable):
-                if index == selection:
-                    player1= Class_Character.playable[ftype]
-        except ValueError:
-            selection=selection.capitalize()
-            if selection in Class_Character.playable:
-                player1= Class_Character.playable[selection]
+        selecting=True
+        while selecting:
+            selection=input('>')
+            try:
+                selection = int(selection)-1
+                for index,ftype in enumerate(Class_Character.playable):
+                    if index == selection:
+                        player1= Class_Character.playable[ftype]
+                        print('hi')
+                        selecting=False
+            except ValueError:
+                try:
+                    selection=selection.capitalize()
+                    if selection in Class_Character.playable:
+                        player1= Class_Character.playable[selection]
+                        selecting=False
+                except ValueError:
+                    pass
         while True:
             os.system('cls')
             playercheck=input(f'\nAre you certain about this class? [Yes][No]\n\nClass: {player1.name}\nDescription: {player1.desc}\nMax HP: {player1.b_HP}\nBase Attack: {player1.b_atk}\nBase Defense: {player1.b_defn}\nSpeed: {player1.spd}\nStamina: {player1.stam}\n>')
@@ -93,6 +100,7 @@ if game_start == 'Fight'or game_start == 'fight':
             break
         else:
             pass
+
 elif game_start == 'test':
     player1 = Class_Character.warrior
     player2 = Class_Character.warrior2
@@ -236,7 +244,7 @@ while True:
             else:
                 pass
 
-    if player1.burning==True or player2.burning==True or player1.deflecting==True or player2.deflecting==True:
+    if player1.dmging_five==True or player2.dmging_five==True or player1.deflecting==True or player2.deflecting==True:
         if player1.initiative:
             os.system('cls')
             print('\nPlayer 1:')

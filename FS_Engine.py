@@ -33,14 +33,14 @@ def slash_attack(player,oplayer) -> None:
     print('You strike with your blade.')
     oplayer.HP = oplayer.HP - 7
     player.stam -= Class_Character.slash.stam_use
-    print('Player Stamina - 10')
+    print('Player Stamina - 15')
     print('Opposing player HP - 7\n')
 
 def arrow_attack(player,oplayer) -> None:
     print('You draw back and release a perfect shot.')
     oplayer.HP = oplayer.HP - 7
     player.stam -= Class_Character.slash.stam_use
-    print('Player Stamina - 10')
+    print('Player Stamina - 15')
     print('Opposing player HP - 7\n')
 
 def fireball_attack(player,oplayer) -> None:
@@ -49,7 +49,6 @@ def fireball_attack(player,oplayer) -> None:
     player.stam -= Class_Character.slash.stam_use
     print('Player Stamina - 15')
     print('Opposing player HP - 7\n')
-    oplayer.burn(4)
 
 #Warrior Attack Functions
 def sword_tackle_attack(player,oplayer) -> None:
@@ -79,6 +78,15 @@ def shield_bash_attack(player,oplayer) -> None:
     print(f'Stamina - {Class_Character.shield_bash.stam_use}\n')
     player.three_cooldown(3)
     player.deflect(1)
+
+#Paladin Attack Functions
+def tornado_slash_attack(player,oplayer) -> None:
+    dmg = Class_Character.tornado_slash.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.tornado_slash.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.tornado_slash.stam_use}\n')
 
 #Consumable Actions
 def hp_consumable(player):
