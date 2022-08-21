@@ -74,17 +74,23 @@ if game_start == 'Fight'or game_start == 'fight':
         player2=None
         for index,ftype in enumerate(Class_Character.playable2):
             print(f'[{index+1}] {ftype}')
-
-        selection=input('>')
-        try:
-            selection = int(selection)-1
-            for index,ftype in enumerate(Class_Character.playable2):
-                if index == selection:
-                    player2= Class_Character.playable2[ftype]
-        except ValueError:
-            selection=selection.capitalize()
-            if selection in Class_Character.playable2:
-                player2= Class_Character.playable2[selection]
+        selecting2=True
+        while selecting2:
+            selection=input('>')
+            try:
+                selection = int(selection)-1
+                for index,ftype in enumerate(Class_Character.playable2):
+                    if index == selection:
+                        player2= Class_Character.playable2[ftype]
+                        selecting2=False
+            except ValueError:
+                try:
+                    selection=selection.capitalize()
+                    if selection in Class_Character.playable2:
+                        player2= Class_Character.playable2[selection]
+                        selecting2=False
+                except ValueError:
+                    pass
         while True:
             os.system('cls')
             playercheck=input(f'\nAre you certain about this class? [Yes][No]\n\nClass: {player2.name}\nDescription: {player2.desc}\nMax HP: {player2.b_HP}\nBase Attack: {player2.b_atk}\nBase Defense: {player2.b_defn}\nSpeed: {player2.spd}\nStamina: {player2.stam}\n>')
