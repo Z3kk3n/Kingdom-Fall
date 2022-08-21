@@ -1,8 +1,8 @@
-# if __name__=='main':
 import random
+# from Fight_System import player1,player2
 
 class fighter:
-    def __init__(self,name,description,base_hp,hit_points,base_attack,attack,base_defense,defense,speed,max_stamina,stamina,) -> None:
+    def __init__(self,name,description,base_hp,hit_points,base_attack,attack,base_defense,defense,base_speed,speed,max_stamina,stamina,) -> None:
         self.name=name
         self.desc=description
         self.b_HP=base_hp
@@ -11,12 +11,14 @@ class fighter:
         self.atk=attack
         self.b_defn=base_defense
         self.defn=defense
+        self.b_spd=base_speed
         self.spd=speed
         self.max_stam=max_stamina
         self.stam=stamina
         self.initiative=False
     #Attacks and Items
         self.atk_useable={}
+        self.atk_useableS={}
         self.selected_atk=None
         self.consumable={'Hp Potion':inv_item('Hp Potion','Heals charater for half of missing HP.'),
                         'Attack Potion':inv_item('Attack Potion','Increases player attack for one turn.'),
@@ -40,8 +42,12 @@ class fighter:
         self.speedy_turns=0
 
     #Cooldowns
-        # self.ST_on_cooldown=False
-        # self.CD_ST_turns=0
+        self.one_on_cooldown=False
+        self.two_on_cooldown=False
+        self.three_on_cooldown=False
+        self.one_CD_turns=0
+        self.two_CD_turns=0
+        self.three_CD_turns=0
 
     #Method of checking for statis conditions
     def update(self):
@@ -89,7 +95,7 @@ class fighter:
             self.atk+=5
             self.attacky_turns-=1
             if self.attacky_turns<=0:
-                self.atk-=5
+                self.atk=self.b_atk
                 self.attacky=False
 
     def methdefense(self,defensey_turns=False):
@@ -100,7 +106,7 @@ class fighter:
             self.defn+=2
             self.defensey_turns-=1
             if self.defensey_turns<=0:
-                self.defn-=2
+                self.defn=self.b_defn
                 self.defensey=False
 
     def methspeed(self,speedy_turns=False):
@@ -111,24 +117,94 @@ class fighter:
             self.spd*=2
             self.speedy_turns-=1
             if self.speedy_turns<=0:
-                self.spd/=2
+                self.spd=self.b_spd
                 self.speedy=False
 
-    # def cooldown_update(self):
-    #     if self.ST_on_cooldown:
-    #         self.ST_cooldown()
+    def cooldown_update(self):
+        if self.one_on_cooldown:
+            self.one_cooldown()
+        if self.two_on_cooldown:
+            self.two_cooldown()
+        if self.three_on_cooldown:
+            self.three_cooldown()
 
-    # def ST_cooldown(self,CD_ST_turns=False):
-    #     if CD_ST_turns:
-    #         self.CD_ST_turns=CD_ST_turns
-    #         self.ST_on_cooldown=True
-    #     else:
-    #         if sword_tackle in self.atk_useable:
-    #             del self.atk_useable['Sword Tackle']
-    #         self.CD_ST_turns-=1
-    #         if self.CD_ST_turns<=0:
-    #             self.atk_useable['Sword Tackle']=sword_tackle
-    #             self.ST_on_cooldown=False
+    def one_cooldown(self,one_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if one_CD_turns:
+                self.one_CD_turns=one_CD_turns
+                self.one_on_cooldown=True
+            else:
+                sword_tackle.text_color='\033[0;30m'
+                sword_tackle.on_cooldown=True
+                self.one_CD_turns-=1
+                if self.one_CD_turns<=0:
+                    sword_tackle.text_color='\033[0m'
+                    sword_tackle.on_cooldown=False
+                    self.one_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if one_CD_turns:
+                self.one_CD_turns=one_CD_turns
+                self.one_on_cooldown=True
+            else:
+                sword_tackle2.text_color='\033[0;30m'
+                sword_tackle2.on_cooldown=True
+                self.one_CD_turns-=1
+                if self.one_CD_turns<=0:
+                    sword_tackle2.text_color='\033[0m'
+                    sword_tackle2.on_cooldown=False
+                    self.one_on_cooldown=False
+
+    def two_cooldown(self,two_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if two_CD_turns:
+                self.two_CD_turns=two_CD_turns
+                self.two_on_cooldown=True
+            else:
+                fire_slash.text_color='\033[0;30m'
+                fire_slash.on_cooldown=True
+                self.two_CD_turns-=1
+                if self.two_CD_turns<=0:
+                    fire_slash.text_color='\033[0m'
+                    fire_slash.on_cooldown=False
+                    self.two_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if two_CD_turns:
+                self.two_CD_turns=two_CD_turns
+                self.two_on_cooldown=True
+            else:
+                fire_slash2.text_color='\033[0;30m'
+                fire_slash2.on_cooldown=True
+                self.two_CD_turns-=1
+                if self.two_CD_turns<=0:
+                    fire_slash2.text_color='\033[0m'
+                    fire_slash2.on_cooldown=False
+                    self.two_on_cooldown=False
+
+    def three_cooldown(self,three_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if three_CD_turns:
+                self.three_CD_turns=three_CD_turns
+                self.three_on_cooldown=True
+            else:
+                shield_bash.text_color='\033[0;30m'
+                shield_bash.on_cooldown=True
+                self.three_CD_turns-=1
+                if self.three_CD_turns<=0:
+                    shield_bash.text_color='\033[0m'
+                    shield_bash.on_cooldown=False
+                    self.three_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if three_CD_turns:
+                self.three_CD_turns=three_CD_turns
+                self.three_on_cooldown=True
+            else:
+                shield_bash2.text_color='\033[0;30m'
+                shield_bash2.on_cooldown=True
+                self.three_CD_turns-=1
+                if self.three_CD_turns<=0:
+                    shield_bash2.text_color='\033[0m'
+                    shield_bash2.on_cooldown=False
+                    self.three_on_cooldown=False
 
 class inv_item:
     def __init__(self,name,description) -> None:
@@ -136,60 +212,75 @@ class inv_item:
         self.desc=description
 
 class attack:
-    def __init__(self,name,description,base_dmg,stamina_useage,turn_cooldown = 0) -> None:
+    def __init__(self,name,description,base_dmg,stamina_useage,text_color,on_cooldown=False) -> None:
         self.name=name
         self.desc=description
         self.base_dmg=base_dmg
         self.stam_use=stamina_useage
-        self.TCD=turn_cooldown
+        self.text_color=text_color
+        self.on_cooldown=on_cooldown
 
 #Inventory Items
 #hp_potion=inv_item('Hp Potion','Heals charater for half of missing HP.')
 
 #Basic Attacks
-slash=attack('Slash','Basic attack. Deals 7 true damage.',7,15)
-fireball=attack('Fireball','Basic attack. Deals 7 true damage.',7,15)
-arrow=attack('Arrow','Basic attack. Deals 7 true damage',7,15)
+slash=attack('Slash','Basic attack. Deals 7 true damage.',7,15,'\033[0m')
+slash2=attack('Slash','Basic attack. Deals 7 true damage.',7,15,'\033[0m')
+fireball=attack('Fireball','Basic attack. Deals 7 true damage.',7,15,'\033[0m')
+fireball2=attack('Fireball','Basic attack. Deals 7 true damage.',7,15,'\033[0m')
+arrow=attack('Arrow','Basic attack. Deals 7 true damage',7,15,'\033[0m')
+arrow2=attack('Arrow','Basic attack. Deals 7 true damage',7,15,'\033[0m')
 #Warrior Attacks
-sword_tackle=attack('Sword Tackle','Recklessly tackle with your sword.',15,25,turn_cooldown=1)
-fire_slash=attack('Fire Slash','You light your sword ablaze.',25,35,turn_cooldown=2)
-shield_bash=attack('Shield Bash','You feel the bash of the shield, it shakes your arm.',20,30,turn_cooldown=2)
+sword_tackle=attack('Sword Tackle','Recklessly tackle with your sword.',15,25,'\033[0m')
+sword_tackle2=attack('Sword Tackle','Recklessly tackle with your sword.',15,25,'\033[0m')
+fire_slash=attack('Fire Slash','You light your sword ablaze.',25,35,'\033[0m')
+fire_slash2=attack('Fire Slash','You light your sword ablaze.',25,35,'\033[0m')
+shield_bash=attack('Shield Bash','You feel the bash of the shield, it shakes your arm.',20,30,'\033[0m')
+shield_bash2=attack('Shield Bash','You feel the bash of the shield, it shakes your arm.',20,30,'\033[0m')
 
 
 #Character Classes
-warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100)
-warrior2=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100)
-warrior.atk_useable['Slash']=slash
-warrior2.atk_useable['Slash']=slash
-warrior.atk_useable['Sword Tackle']=sword_tackle
-warrior2.atk_useable['Sword Tackle']=sword_tackle
-warrior.atk_useable['Fire Slash']=fire_slash
-warrior2.atk_useable['Fire Slash']=fire_slash
-warrior.atk_useable['Shield Bash']=shield_bash
-warrior2.atk_useable['Shield Bash']=shield_bash
+warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)
+warrior2=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)
+warrior.atk_useable[slash]=slash
+warrior2.atk_useable[slash2]=slash2
+warrior.atk_useable[sword_tackle]=sword_tackle
+warrior2.atk_useable[sword_tackle2]=sword_tackle2
+warrior.atk_useable[fire_slash]=fire_slash
+warrior2.atk_useable[fire_slash2]=fire_slash2
+warrior.atk_useable[shield_bash]=shield_bash
+warrior2.atk_useable[shield_bash2]=shield_bash2
+warrior.atk_useableS['Slash']=slash
+warrior2.atk_useableS['Slash']=slash2
+warrior.atk_useableS['Sword Tackle']=sword_tackle
+warrior2.atk_useableS['Sword Tackle']=sword_tackle2
+warrior.atk_useableS['Fire Slash']=fire_slash
+warrior2.atk_useableS['Fire Slash']=fire_slash2
+warrior.atk_useableS['Shield Bash']=shield_bash
+warrior2.atk_useableS['Shield Bash']=shield_bash2
 
-paladin=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80,80)
-paladin2=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80,80)
+paladin=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80,80,80)
+paladin2=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80,80,80)
 paladin.atk_useable['Slash']=slash
 paladin2.atk_useable['Slash']=slash
 
-assassin=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,90,90)
-assassin2=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,90,90)
+assassin=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
+assassin2=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
 assassin.atk_useable['Slash']=slash
 assassin2.atk_useable['Slash']=slash
 
-knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,100,100)
-knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,100,100)
+knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,120,100,100)
+knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,120,100,100)
 knight.atk_useable['Slash']=slash
 knight2.atk_useable['Slash']=slash
 
-archer=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',80,80,30,30,4,4,110,110,110)
-archer2=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',80,80,30,30,4,4,110,110,110)
+archer=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',80,80,30,30,4,4,110,110,110,110)
+archer2=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',80,80,30,30,4,4,110,110,110,110)
 archer.atk_useable['Arrow']=arrow
 archer2.atk_useable['Arrow']=arrow
 
-mage=fighter('Mage','Slow but very powerful attacks. Low defense',100,100,30,30,4,4,70,120,120)
-mage2=fighter('Mage','Slow but very powerful attacks. Low defense',100,100,30,30,4,4,70,120,120)
+mage=fighter('Mage','Slow but very powerful attacks. Low defense',100,100,30,30,4,4,70,70,120,120)
+mage2=fighter('Mage','Slow but very powerful attacks. Low defense',100,100,30,30,4,4,70,70,120,120)
 mage.atk_useable['Fireball']=fireball
 mage2.atk_useable['Fireball']=fireball
 

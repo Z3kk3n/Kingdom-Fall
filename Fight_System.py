@@ -239,18 +239,18 @@ while True:
     if player1.burning==True or player2.burning==True or player1.deflecting==True or player2.deflecting==True:
         if player1.initiative:
             os.system('cls')
-            print('/nPlayer 1:')
+            print('\nPlayer 1:')
             player1.update()
-            print('/nPlayer 2:')
+            print('\nPlayer 2:')
             player2.update()
-            time.sleep(4)
+            time.sleep(2)
         else:
             os.system('cls')
             print('\nPlayer 2:')
             player2.update()
             print('\nPlayer 1:')
             player1.update()
-            time.sleep(4)
+            time.sleep(2)
     else:
         pass
 

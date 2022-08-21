@@ -1,4 +1,5 @@
 from logging import PlaceHolder
+from opcode import HAVE_ARGUMENT
 import string
 import Class_Character
 
@@ -58,7 +59,7 @@ def sword_tackle_attack(player,oplayer) -> None:
     player.stam -= Class_Character.sword_tackle.stam_use
     print(f'You deal {dmg} damage.')
     print(f'Stamina - {Class_Character.sword_tackle.stam_use}\n')
-    # player.ST_cooldown(1)
+    player.one_cooldown(2)
 
 def fire_slash_attack(player,oplayer) -> None:
     dmg = Class_Character.fire_slash.base_dmg * player.atk / oplayer.defn / 4
@@ -67,6 +68,7 @@ def fire_slash_attack(player,oplayer) -> None:
     player.stam -= Class_Character.fire_slash.stam_use
     print(f'You deal {dmg} damage.')
     print(f'Stamina - {Class_Character.sword_tackle.stam_use}\n')
+    player.two_cooldown(3)
 
 def shield_bash_attack(player,oplayer) -> None:
     dmg = Class_Character.shield_bash.base_dmg * player.atk / oplayer.defn / 4
@@ -75,6 +77,7 @@ def shield_bash_attack(player,oplayer) -> None:
     player.stam -= Class_Character.shield_bash.stam_use
     print(f'You deal {dmg} damage.')
     print(f'Stamina - {Class_Character.shield_bash.stam_use}\n')
+    player.three_cooldown(3)
     player.deflect(1)
 
 #Consumable Actions
@@ -127,25 +130,33 @@ def Inv(player,oplayer) -> None:
 
 def Fight_Opp(player,oplayer) -> None:
     print("Chose an attack or type 'Close'.")
-
-    selected_atk=None
-    for index,attack in enumerate(player.atk_useable):
-        print(f'[{index+1}] {attack}')
-
-    selectionA=input('>')
-    if selectionA=='Close' or selectionA=='close':
-        return
-    try:
-        selectionA = int(selectionA)-1
+    while True:
+        selected_atk=None
         for index,attack in enumerate(player.atk_useable):
-            if index == selectionA:
-                selected_atk= player.atk_useable[attack]
+            print(f'{attack.text_color}[{index+1}] {attack.name}')
+
+        selectionA=input('\033[0m>')
+        if selectionA=='Close' or selectionA=='close':
+            return
+        try:
+            selectionA = int(selectionA)-1
+            for index,attack in enumerate(player.atk_useable):
+                if index == selectionA:
+                    selected_atk= player.atk_useable[attack]
+        except ValueError:
+            selectionA=string.capwords(selectionA)
+            if selectionA in player.atk_useableS:
+                selected_atk= player.atk_useableS[selectionA]
+
+        if selected_atk not in player.atk_useable:
+            pass
+        else:
+            if selected_atk.on_cooldown:
+                print("You are still tired out from this attack. You're on cooldown.")
+            elif selected_atk.on_cooldown==False:
                 return selected_atk
-    except ValueError:
-        selectionA=string.capwords(selectionA)
-        if selectionA in player.atk_useable:
-            selected_atk= player.atk_useable[selectionA]
-            return selected_atk
+            else:
+                return
 
 def Stat(player,oplayer) -> None:
     print(f'HP: {player.HP}')
