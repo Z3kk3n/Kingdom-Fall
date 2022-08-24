@@ -20,7 +20,7 @@ print('\nNOTE: Game is NOT capital letter dependent. You can also type the numbe
 
 while True:
     game_start=input("Ready to battle? Type 'Fight'!\n>")
-    if game_start=='Fight' or game_start=='fight' or game_start=='test':
+    if game_start=='Fight' or game_start=='fight' or game_start=='test1' or game_start=='test2':
         break
     else:
         pass
@@ -107,9 +107,12 @@ if game_start == 'Fight'or game_start == 'fight':
         else:
             pass
 
-elif game_start == 'test':
+elif game_start == 'test1':
     player1 = Class_Character.warrior
     player2 = Class_Character.warrior2
+elif game_start == 'test2':
+    player1 = Class_Character.paladin
+    player2 = Class_Character.paladin2
 else:
     os.system('cls')
     exit()
@@ -250,7 +253,7 @@ while True:
             else:
                 pass
 
-    if player1.dmging_five==True or player2.dmging_five==True or player1.deflecting==True or player2.deflecting==True:
+    if player1.dmging_five==True or player2.dmging_five==True or player1.dmging_seven==True or player2.dmging_seven==True or player1.paladin_slowing==True or player2.paladin_slowing==True or player1.deflecting==True or player2.deflecting==True:
         if player1.initiative:
             os.system('cls')
             print('\nPlayer 1:')

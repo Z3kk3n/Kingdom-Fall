@@ -21,7 +21,10 @@ f_action={'Slash':'slash_attack',
 'Fireball':'fireball_attack',
 'Sword Tackle':'sword_tackle_attack',
 'Fire Slash':'fire_slash_attack',
-'Shield Bash':'shield_bash_attack'}
+'Shield Bash':'shield_bash_attack',
+'Tornado Slash':'tornado_slash_attack',
+'Fissure':'fissure_attack',
+'Heal':'heal_attack'}
 
 consumableact={'Hp Potion':'hp_consumable',
 'Attack Potion':'atk_consumable',
@@ -87,6 +90,29 @@ def tornado_slash_attack(player,oplayer) -> None:
     player.stam -= Class_Character.tornado_slash.stam_use
     print(f'You deal {dmg} damage.')
     print(f'Stamina - {Class_Character.tornado_slash.stam_use}\n')
+    player.four_cooldown(3)
+    oplayer.r_dmg_seven(2)
+
+def fissure_attack(player,oplayer) -> None:
+    dmg = Class_Character.fissure.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.fissure.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.fissure.stam_use}\n')
+    player.five_cooldown(4)
+    oplayer.paladin_slow(1)
+
+def heal_attack(player,oplayer) -> None:
+    healhp = Class_Character.heal.base_dmg
+    round(healhp)
+    player.HP += healhp
+    player.HP = min(player.HP,player.b_HP)
+    player.stam -= Class_Character.heal.stam_use
+    print(f'You heal {healhp} HP.')
+    print(f'Stamina - {Class_Character.fissure.stam_use}')
+    player.six_cooldown(4)
+
 
 #Consumable Actions
 def hp_consumable(player):

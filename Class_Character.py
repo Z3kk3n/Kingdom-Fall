@@ -29,8 +29,10 @@ class fighter:
         #Bad:
         self.dmging_five=False
         self.dmging_seven=False
+        self.paladin_slowing=False
         self.turn_of_dmg_five=0
         self.turn_of_dmg_seven=0
+        self.turn_of_paladin_slow=0
         #Good:
         self.deflecting=False
         self.turn_of_deflect=0
@@ -48,10 +50,14 @@ class fighter:
         self.two_on_cooldown=False
         self.three_on_cooldown=False
         self.four_on_cooldown=False
+        self.five_on_cooldown=False
+        self.six_on_cooldown=False
         self.one_CD_turns=0
         self.two_CD_turns=0
         self.three_CD_turns=0
         self.four_CD_turns=0
+        self.five_CD_turns=0
+        self.six_CD_turns=0
 
     #Method of checking for statis conditions
     def update(self):
@@ -60,6 +66,8 @@ class fighter:
             self.r_dmg_five()
         if self.dmging_seven:
             self.r_dmg_seven()
+        if self.paladin_slowing:
+            self.paladin_slow()
         #Good:
         if self.deflect:
             self.deflect()
@@ -70,6 +78,7 @@ class fighter:
             self.turn_of_dmg_five=turn_of_dmg_five
             self.dmging_five=True
         else:
+            print('You take 5 damage.')
             self.HP-=5
             self.turn_of_dmg_five-=1
             if self.turn_of_dmg_five<=0:
@@ -80,10 +89,30 @@ class fighter:
             self.turn_of_dmg_seven=turn_of_dmg_seven
             self.dmging_seven=True
         else:
+            print('You take 7 damage.')
             self.HP-=7
             self.turn_of_dmg_seven-=1
             if self.turn_of_dmg_seven<=0:
                 self.dmging_seven=False
+
+    def paladin_slow(self,turn_of_paladin_slow=False):
+        if turn_of_paladin_slow:
+            self.turn_of_paladin_slow=turn_of_paladin_slow
+            self.paladin_slowing=True
+        else:
+            if self!=warrior2 or self!=paladin2 or self!=assassin2 or self!=knight2 or self!=archer2 or self!=mage2:
+                if random.randrange(1,100)<=50:
+                    print('You get your foot caught. Speed down.')
+                    self.spd=paladin.b_spd
+                self.turn_of_paladin_slow-=1
+            if self!=warrior or self!=paladin or self!=assassin or self!=knight or self!=archer or self!=mage:
+                if random.randrange(1,100)<=50:
+                    print('You get your foot caught. Speed down.')
+                    self.spd=paladin.b_spd
+                self.turn_of_paladin_slow-=1
+            if self.turn_of_paladin_slow<=0:
+                self.spd=self.b_spd
+                self.paladin_slowing=False
 
     def deflect(self,turn_of_deflect=False):
         if turn_of_deflect:
@@ -147,6 +176,10 @@ class fighter:
             self.three_cooldown()
         if self.four_on_cooldown:
             self.four_cooldown()
+        if self.five_on_cooldown:
+            self.five_cooldown()
+        if self.six_on_cooldown:
+            self.six_cooldown()
 
     def one_cooldown(self,one_CD_turns=False):
         if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
@@ -252,6 +285,58 @@ class fighter:
                     tornado_slash2.on_cooldown=False
                     self.four_on_cooldown=False
 
+    def five_cooldown(self,five_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if five_CD_turns:
+                self.five_CD_turns=five_CD_turns
+                self.five_on_cooldown=True
+            else:
+                fissure.text_color='\033[0;30m'
+                fissure.on_cooldown=True
+                self.five_CD_turns-=1
+                if self.five_CD_turns<=0:
+                    fissure.text_color='\033[0m'
+                    fissure.on_cooldown=False
+                    self.five_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if five_CD_turns:
+                self.five_CD_turns=five_CD_turns
+                self.five_on_cooldown=True
+            else:
+                fissure2.text_color='\033[0;30m'
+                fissure2.on_cooldown=True
+                self.five_CD_turns-=1
+                if self.five_CD_turns<=0:
+                    fissure2.text_color='\033[0m'
+                    fissure2.on_cooldown=False
+                    self.five_on_cooldown=False
+
+    def six_cooldown(self,six_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if six_CD_turns:
+                self.six_CD_turns=six_CD_turns
+                self.six_on_cooldown=True
+            else:
+                heal.text_color='\033[0;30m'
+                heal.on_cooldown=True
+                self.six_CD_turns-=1
+                if self.six_CD_turns<=0:
+                    heal.text_color='\033[0m'
+                    heal.on_cooldown=False
+                    self.six_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if six_CD_turns:
+                self.six_CD_turns=six_CD_turns
+                self.six_on_cooldown=True
+            else:
+                heal2.text_color='\033[0;30m'
+                heal2.on_cooldown=True
+                self.six_CD_turns-=1
+                if self.six_CD_turns<=0:
+                    heal2.text_color='\033[0m'
+                    heal2.on_cooldown=False
+                    self.six_on_cooldown=False
+
 class inv_item:
     def __init__(self,name,description) -> None:
         self.name=name
@@ -279,13 +364,17 @@ arrow2=attack('Arrow','Basic attack. Deals 7 true damage',7,15,'\033[0m')
 #Warrior Attacks
 sword_tackle=attack('Sword Tackle','Recklessly tackle with your sword.',15,25,'\033[0m')
 sword_tackle2=attack('Sword Tackle','Recklessly tackle with your sword.',15,25,'\033[0m')
-fire_slash=attack('Fire Slash','You light your sword ablaze.',25,35,'\033[0m')
-fire_slash2=attack('Fire Slash','You light your sword ablaze.',25,35,'\033[0m')
-shield_bash=attack('Shield Bash','You feel the bash of the shield, it shakes your arm.',20,30,'\033[0m')
-shield_bash2=attack('Shield Bash','You feel the bash of the shield, it shakes your arm.',20,30,'\033[0m')
+fire_slash=attack('Fire Slash','Lights your sword ablaze.',25,35,'\033[0m')
+fire_slash2=attack('Fire Slash','Lights your sword ablaze.',25,35,'\033[0m')
+shield_bash=attack('Shield Bash','The bash of the shield shakes your arm.',20,30,'\033[0m')
+shield_bash2=attack('Shield Bash','The bash of the shield shakes your arm.',20,30,'\033[0m')
 #Paladin Attacks
-tornado_slash=attack('Tornado Tackle','Slash multiple times in succession.',12,25,'\033[0m')
-tornado_slash2=attack('Tornado Tackle','Slash multiple times in succession.',12,25,'\033[0m')
+tornado_slash=attack('Tornado Slash','Slash multiple times in succession.',12,25,'\033[0m')
+tornado_slash2=attack('Tornado Slash','Slash multiple times in succession.',12,25,'\033[0m')
+fissure=attack('Fissure','Splits the ground in two, opponent may get caught.',30,35,'\033[0m')
+fissure2=attack('Fissure','Splits the ground in two, opponent may get caught.',30,35,'\033[0m')
+heal=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
+heal2=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 
 #Character Classes
 warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)
@@ -313,10 +402,18 @@ paladin.atk_useable[slash]=slash
 paladin2.atk_useable[slash2]=slash2
 paladin.atk_useable[tornado_slash]=tornado_slash
 paladin2.atk_useable[tornado_slash2]=tornado_slash2
+paladin.atk_useable[fissure]=fissure
+paladin2.atk_useable[fissure2]=fissure2
+paladin.atk_useable[heal]=heal
+paladin2.atk_useable[heal2]=heal2
 paladin.atk_useableS['Slash']=slash
 paladin2.atk_useableS['Slash']=slash
-paladin.atk_useable['Tornado Slash']=tornado_slash
-paladin2.atk_useable['Tornado Slash']=tornado_slash2
+paladin.atk_useableS['Tornado Slash']=tornado_slash
+paladin2.atk_useableS['Tornado Slash']=tornado_slash2
+paladin.atk_useableS['Fissure']=fissure
+paladin2.atk_useableS['Fissure']=fissure2
+paladin.atk_useableS['Heal']=heal
+paladin2.atk_useableS['Heal']=heal2
 
 assassin=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
 assassin2=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
