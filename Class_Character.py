@@ -69,7 +69,7 @@ class fighter:
         if self.paladin_slowing:
             self.paladin_slow()
         #Good:
-        if self.deflect:
+        if self.deflecting:
             self.deflect()
 
     #Methods of activating statis conditions
@@ -105,7 +105,7 @@ class fighter:
                     print('You get your foot caught. Speed down.')
                     self.spd=paladin.b_spd
                 self.turn_of_paladin_slow-=1
-            if self!=warrior or self!=paladin or self!=assassin or self!=knight or self!=archer or self!=mage:
+            elif self!=warrior or self!=paladin or self!=assassin or self!=knight or self!=archer or self!=mage:
                 if random.randrange(1,100)<=50:
                     print('You get your foot caught. Speed down.')
                     self.spd=paladin.b_spd
