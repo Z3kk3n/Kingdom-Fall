@@ -52,12 +52,36 @@ class fighter:
         self.four_on_cooldown=False
         self.five_on_cooldown=False
         self.six_on_cooldown=False
+        self.seven_on_cooldown=False
+        self.eight_on_cooldown=False
+        self.nine_on_cooldown=False
+        self.ten_on_cooldown=False
+        self.elevan_on_cooldown=False
+        self.twelve_on_cooldown=False
+        self.thirteen_on_cooldown=False
+        self.fourteen_on_cooldown=False
+        self.fifteen_on_cooldown=False
+        self.sixteen_on_cooldown=False
+        self.seventeen_on_cooldown=False
+        self.eighteen_on_cooldown=False
         self.one_CD_turns=0
         self.two_CD_turns=0
         self.three_CD_turns=0
         self.four_CD_turns=0
         self.five_CD_turns=0
         self.six_CD_turns=0
+        self.seven_CD_turns=0
+        self.eight_CD_turns=0
+        self.nine_CD_turns=0
+        self.ten_CD_turns=0
+        self.eleven_CD_turns=0
+        self.twelve_CD_turns=0
+        self.thirteen_CD_turns=0
+        self.fourteen_CD_turns=0
+        self.fifteen_CD_turns=0
+        self.sixteen_CD_turns=0
+        self.seventeen_CD_turns=0
+        self.eighteen_CD_turns=0
 
     #Method of checking for statis conditions
     def update(self):
