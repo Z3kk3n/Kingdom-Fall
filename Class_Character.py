@@ -375,6 +375,13 @@ fissure=attack('Fissure','Splits the ground in two, opponent may get caught.',30
 fissure2=attack('Fissure','Splits the ground in two, opponent may get caught.',30,35,'\033[0m')
 heal=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 heal2=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
+#Assassin Attacks
+vampirism=attack('Vampirism','Steals health and applies bleed.',0,0,'\033[0m')
+vampirism2=attack('Vampirism','Steals health and applies bleed.',0,0,'\033[0m')
+silent_takedown=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
+silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
+ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',0,0,'\033[0m')
+ryuu2=attack('Ryuu','Strike like a dragon, applies bleed.',0,0,'\033[0m')
 
 #Character Classes
 warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)
