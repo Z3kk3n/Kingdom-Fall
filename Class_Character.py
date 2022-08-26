@@ -360,7 +360,33 @@ class fighter:
                     heal2.text_color='\033[0m'
                     heal2.on_cooldown=False
                     self.six_on_cooldown=False
-
+                    
+    def seven_cooldown(self,seven_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if seven_CD_turns:
+                self.seven_CD_turns=seven_CD_turns
+                self.seven_on_cooldown=True
+            else:
+                vampirism.text_color='\033[0;30m'
+                vampirism.on_cooldown=True
+                self.seven_CD_turns-=1
+                if self.seven_CD_turns<=0:
+                    vampirism.text_color='\033[0m'
+                    vampirism.on_cooldown=False
+                    self.seven_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if seven_CD_turns:
+                self.seven_CD_turns=seven_CD_turns
+                self.seven_on_cooldown=True
+            else:
+                vampirism2.text_color='\033[0;30m'
+                vampirism2.on_cooldown=True
+                self.seven_CD_turns-=1
+                if self.seven_CD_turns<=0:
+                    vampirism2.text_color='\033[0m'
+                    vampirism2.on_cooldown=False
+                    self.seven_on_cooldown=False
+                    
 class inv_item:
     def __init__(self,name,description) -> None:
         self.name=name
