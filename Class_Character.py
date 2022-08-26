@@ -204,6 +204,12 @@ class fighter:
             self.five_cooldown()
         if self.six_on_cooldown:
             self.six_cooldown()
+        if self.seven_on_cooldown:
+            self.seven_cooldown()
+        if self.eight_on_cooldown:
+            self.eight_cooldown()
+        if self.nine_on_cooldown:
+            self.nine_cooldown()
 
     def one_cooldown(self,one_CD_turns=False):
         if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
@@ -386,6 +392,58 @@ class fighter:
                     vampirism2.text_color='\033[0m'
                     vampirism2.on_cooldown=False
                     self.seven_on_cooldown=False
+                    
+    def eight_cooldown(self,eight_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if eight_CD_turns:
+                self.eight_CD_turns=eight_CD_turns
+                self.eight_on_cooldown=True
+            else:
+                silent_takedown.text_color='\033[0;30m'
+                silent_takedown.on_cooldown=True
+                self.eight_CD_turns-=1
+                if self.eight_CD_turns<=0:
+                    silent_takedown.text_color='\033[0m'
+                    silent_takedown.on_cooldown=False
+                    self.eight_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if eight_CD_turns:
+                self.eight_CD_turns=eight_CD_turns
+                self.eight_on_cooldown=True
+            else:
+                silent_takedown2.text_color='\033[0;30m'
+                silent_takedown2.on_cooldown=True
+                self.eight_CD_turns-=1
+                if self.eight_CD_turns<=0:
+                    silent_takedown2.text_color='\033[0m'
+                    silent_takedown2.on_cooldown=False
+                    self.eight_on_cooldown=False
+
+    def nine_cooldown(self,nine_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if nine_CD_turns:
+                self.nine_CD_turns=nine_CD_turns
+                self.nine_on_cooldown=True
+            else:
+                ryuu.text_color='\033[0;30m'
+                ryuu.on_cooldown=True
+                self.nine_CD_turns-=1
+                if self.nine_CD_turns<=0:
+                    ryuu.text_color='\033[0m'
+                    ryuu.on_cooldown=False
+                    self.nine_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if nine_CD_turns:
+                self.nine_CD_turns=nine_CD_turns
+                self.nine_on_cooldown=True
+            else:
+                ryuu2.text_color='\033[0;30m'
+                ryuu2.on_cooldown=True
+                self.nine_CD_turns-=1
+                if self.nine_CD_turns<=0:
+                    ryuu2.text_color='\033[0m'
+                    ryuu2.on_cooldown=False
+                    self.nine_on_cooldown=False
                     
 class inv_item:
     def __init__(self,name,description) -> None:
