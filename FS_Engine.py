@@ -24,7 +24,8 @@ f_action={'Slash':'slash_attack',
 'Shield Bash':'shield_bash_attack',
 'Tornado Slash':'tornado_slash_attack',
 'Fissure':'fissure_attack',
-'Heal':'heal_attack'}
+'Heal':'heal_attack',
+'Vampirism':'vampirism_attack'}
 
 consumableact={'Hp Potion':'hp_consumable',
 'Attack Potion':'atk_consumable',
@@ -113,6 +114,17 @@ def heal_attack(player,oplayer) -> None:
     print(f'Stamina - {Class_Character.fissure.stam_use}')
     player.six_cooldown(4)
 
+#Assassin Attacks
+def vampirism_attack(player,oplayer) -> None:
+    dmg = Class_Character.vampirism.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    healhp = dmg / 2
+    oplayer.HP -= dmg
+    player.HP += healhp
+    player.stam -= Class_Character.vampirism.stam_use
+    print(f'You deal {dmg} damage. Vampirism HP + {healhp}')
+    print(f'Stamina - {Class_Character.vampirism.stam_use}')
+    player.seven_cooldown(4)
 
 #Consumable Actions
 def hp_consumable(player):
