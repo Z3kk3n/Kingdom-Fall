@@ -484,8 +484,8 @@ fissure2=attack('Fissure','Splits the ground in two, opponent may get caught.',3
 heal=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 heal2=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 #Assassin Attacks
-vampirism=attack('Vampirism','Steals health and applies bleed.',0,0,'\033[0m')
-vampirism2=attack('Vampirism','Steals health and applies bleed.',0,0,'\033[0m')
+vampirism=attack('Vampirism','Steals health and applies bleed.',23,30,'\033[0m')
+vampirism2=attack('Vampirism','Steals health and applies bleed.',23,30,'\033[0m')
 silent_takedown=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
 silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
 ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',0,0,'\033[0m')
