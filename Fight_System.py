@@ -20,7 +20,7 @@ print('\nNOTE: Game is NOT capital letter dependent. You can also type the numbe
 
 while True:
     game_start=input("Ready to battle? Type 'Fight'!\n>")
-    if game_start=='Fight' or game_start=='fight' or game_start=='test1' or game_start=='test2':
+    if game_start=='Fight' or game_start=='fight' or game_start=='test1' or game_start=='test2' or game_start=='test3':
         break
     else:
         pass
@@ -113,6 +113,9 @@ elif game_start == 'test1':
 elif game_start == 'test2':
     player1 = Class_Character.paladin
     player2 = Class_Character.paladin2
+elif game_start == 'test3':
+    player1 = Class_Character.assassin
+    player2 = Class_Character.assassin2
 else:
     os.system('cls')
     exit()
@@ -253,21 +256,21 @@ while True:
             else:
                 pass
 
-    if player1.dmging_five==True or player2.dmging_five==True or player1.dmging_seven==True or player2.dmging_seven==True or player1.paladin_slowing==True or player2.paladin_slowing==True or player1.deflecting==True or player2.deflecting==True:
+    if player1.dmging_three==True or player2.dmging_three==True or player1.dmging_seven==True or player2.dmging_seven==True or player1.paladin_slowing==True or player2.paladin_slowing==True or player1.deflecting==True or player2.deflecting==True:
         if player1.initiative:
             os.system('cls')
             print('\nPlayer 1:')
             player1.update()
             print('\nPlayer 2:')
             player2.update()
-            time.sleep(2)
+            time.sleep(2.5)
         else:
             os.system('cls')
             print('\nPlayer 2:')
             player2.update()
             print('\nPlayer 1:')
             player1.update()
-            time.sleep(2)
+            time.sleep(2.5)
     else:
         pass
 

@@ -27,10 +27,10 @@ class fighter:
         self.selected_item=None
     #Booleans and Turns for statis conditions
         #Bad:
-        self.dmging_five=False
+        self.dmging_three=False
         self.dmging_seven=False
         self.paladin_slowing=False
-        self.turn_of_dmg_five=0
+        self.turn_of_dmg_three=0
         self.turn_of_dmg_seven=0
         self.turn_of_paladin_slow=0
         #Good:
@@ -61,9 +61,7 @@ class fighter:
         self.thirteen_on_cooldown=False
         self.fourteen_on_cooldown=False
         self.fifteen_on_cooldown=False
-        self.sixteen_on_cooldown=False
-        self.seventeen_on_cooldown=False
-        self.eighteen_on_cooldown=False
+        self.knight_on_cooldown=False
         self.one_CD_turns=0
         self.two_CD_turns=0
         self.three_CD_turns=0
@@ -79,15 +77,14 @@ class fighter:
         self.thirteen_CD_turns=0
         self.fourteen_CD_turns=0
         self.fifteen_CD_turns=0
-        self.sixteen_CD_turns=0
-        self.seventeen_CD_turns=0
-        self.eighteen_CD_turns=0
+        self.knight_CD_turns=0
+
 
     #Method of checking for statis conditions
     def update(self):
         #Bad:
-        if self.dmging_five:
-            self.r_dmg_five()
+        if self.dmging_three:
+            self.r_dmg_three()
         if self.dmging_seven:
             self.r_dmg_seven()
         if self.paladin_slowing:
@@ -97,16 +94,16 @@ class fighter:
             self.deflect()
 
     #Methods of activating statis conditions
-    def r_dmg_five(self,turn_of_dmg_five=False):
-        if turn_of_dmg_five:
-            self.turn_of_dmg_five=turn_of_dmg_five
-            self.dmging_five=True
+    def r_dmg_three(self,turn_of_dmg_three=False):
+        if turn_of_dmg_three:
+            self.turn_of_dmg_three=turn_of_dmg_three
+            self.dmging_three=True
         else:
-            print('You take 5 damage.')
-            self.HP-=5
-            self.turn_of_dmg_five-=1
-            if self.turn_of_dmg_five<=0:
-                self.dmging_five=False
+            print('Bleed - 3 HP.')
+            self.HP-=3
+            self.turn_of_dmg_three-=1
+            if self.turn_of_dmg_three<=0:
+                self.dmging_three=False
 
     def r_dmg_seven(self,turn_of_dmg_seven=False):
         if turn_of_dmg_seven:
@@ -204,6 +201,12 @@ class fighter:
             self.five_cooldown()
         if self.six_on_cooldown:
             self.six_cooldown()
+        if self.seven_on_cooldown:
+            self.seven_cooldown()
+        if self.eight_on_cooldown:
+            self.eight_cooldown()
+        if self.nine_on_cooldown:
+            self.nine_cooldown()
 
     def one_cooldown(self,one_CD_turns=False):
         if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
@@ -361,6 +364,84 @@ class fighter:
                     heal2.on_cooldown=False
                     self.six_on_cooldown=False
 
+    def seven_cooldown(self,seven_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if seven_CD_turns:
+                self.seven_CD_turns=seven_CD_turns
+                self.seven_on_cooldown=True
+            else:
+                vampirism.text_color='\033[0;30m'
+                vampirism.on_cooldown=True
+                self.seven_CD_turns-=1
+                if self.seven_CD_turns<=0:
+                    vampirism.text_color='\033[0m'
+                    vampirism.on_cooldown=False
+                    self.seven_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if seven_CD_turns:
+                self.seven_CD_turns=seven_CD_turns
+                self.seven_on_cooldown=True
+            else:
+                vampirism2.text_color='\033[0;30m'
+                vampirism2.on_cooldown=True
+                self.seven_CD_turns-=1
+                if self.seven_CD_turns<=0:
+                    vampirism2.text_color='\033[0m'
+                    vampirism2.on_cooldown=False
+                    self.seven_on_cooldown=False
+                    
+    def eight_cooldown(self,eight_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if eight_CD_turns:
+                self.eight_CD_turns=eight_CD_turns
+                self.eight_on_cooldown=True
+            else:
+                silent_takedown.text_color='\033[0;30m'
+                silent_takedown.on_cooldown=True
+                self.eight_CD_turns-=1
+                if self.eight_CD_turns<=0:
+                    silent_takedown.text_color='\033[0m'
+                    silent_takedown.on_cooldown=False
+                    self.eight_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if eight_CD_turns:
+                self.eight_CD_turns=eight_CD_turns
+                self.eight_on_cooldown=True
+            else:
+                silent_takedown2.text_color='\033[0;30m'
+                silent_takedown2.on_cooldown=True
+                self.eight_CD_turns-=1
+                if self.eight_CD_turns<=0:
+                    silent_takedown2.text_color='\033[0m'
+                    silent_takedown2.on_cooldown=False
+                    self.eight_on_cooldown=False
+
+    def nine_cooldown(self,nine_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if nine_CD_turns:
+                self.nine_CD_turns=nine_CD_turns
+                self.nine_on_cooldown=True
+            else:
+                ryuu.text_color='\033[0;30m'
+                ryuu.on_cooldown=True
+                self.nine_CD_turns-=1
+                if self.nine_CD_turns<=0:
+                    ryuu.text_color='\033[0m'
+                    ryuu.on_cooldown=False
+                    self.nine_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if nine_CD_turns:
+                self.nine_CD_turns=nine_CD_turns
+                self.nine_on_cooldown=True
+            else:
+                ryuu2.text_color='\033[0;30m'
+                ryuu2.on_cooldown=True
+                self.nine_CD_turns-=1
+                if self.nine_CD_turns<=0:
+                    ryuu2.text_color='\033[0m'
+                    ryuu2.on_cooldown=False
+                    self.nine_on_cooldown=False
+
 class inv_item:
     def __init__(self,name,description) -> None:
         self.name=name
@@ -400,12 +481,12 @@ fissure2=attack('Fissure','Splits the ground in two, opponent may get caught.',3
 heal=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 heal2=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 #Assassin Attacks
-vampirism=attack('Vampirism','Steals health and applies bleed.',0,0,'\033[0m')
-vampirism2=attack('Vampirism','Steals health and applies bleed.',0,0,'\033[0m')
-silent_takedown=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
-silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
-ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',0,0,'\033[0m')
-ryuu2=attack('Ryuu','Strike like a dragon, applies bleed.',0,0,'\033[0m')
+vampirism=attack('Vampirism','Steals health and applies bleed.',21,30,'\033[0m')
+vampirism2=attack('Vampirism','Steals health and applies bleed.',21,30,'\033[0m')
+silent_takedown=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',26,30,'\033[0m')
+silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',26,30,'\033[0m')
+ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
+ryuu2=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
 
 #Character Classes
 warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)
@@ -448,8 +529,22 @@ paladin2.atk_useableS['Heal']=heal2
 
 assassin=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
 assassin2=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
-assassin.atk_useable['Slash']=slash
-assassin2.atk_useable['Slash']=slash
+assassin.atk_useable[slash]=slash
+assassin2.atk_useable[slash2]=slash2
+assassin.atk_useable[vampirism]=vampirism
+assassin2.atk_useable[vampirism2]=vampirism2
+assassin.atk_useable[silent_takedown]=silent_takedown
+assassin2.atk_useable[silent_takedown2]=silent_takedown2
+assassin.atk_useable[ryuu]=ryuu
+assassin2.atk_useable[ryuu2]=ryuu2
+assassin.atk_useableS['Slash']=slash
+assassin2.atk_useableS['Slash']=slash2
+assassin.atk_useableS['Vampirism']=vampirism
+assassin2.atk_useableS['Vampirism']=vampirism2
+assassin.atk_useableS['Silent Takedown']=silent_takedown
+assassin2.atk_useableS['Silent Takedown']=silent_takedown2
+assassin.atk_useableS['Ryuu']=ryuu
+assassin2.atk_useableS['Ryuu']=ryuu2
 
 knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,120,100,100)
 knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,120,100,100)
