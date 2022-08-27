@@ -416,61 +416,6 @@ class fighter:
                     silent_takedown2.on_cooldown=False
                     self.eight_on_cooldown=False
 
-<<<<<<< HEAD
-    def seven_cooldown(self,seven_CD_turns=False):
-        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
-            if seven_CD_turns:
-                self.seven_CD_turns=seven_CD_turns
-                self.seven_on_cooldown=True
-            else:
-                vampirism.text_color='\033[0;30m'
-                vampirism.on_cooldown=True
-                self.seven_CD_turns-=1
-                if self.seven_CD_turns<=0:
-                    vampirism.text_color='\033[0m'
-                    vampirism.on_cooldown=False
-                    self.seven_on_cooldown=False
-        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
-            if seven_CD_turns:
-                self.seven_CD_turns=seven_CD_turns
-                self.seven_on_cooldown=True
-            else:
-                vampirism2.text_color='\033[0;30m'
-                vampirism2.on_cooldown=True
-                self.seven_CD_turns-=1
-                if self.seven_CD_turns<=0:
-                    vampirism2.text_color='\033[0m'
-                    vampirism2.on_cooldown=False
-                    self.seven_on_cooldown=False
-                    
-    def eight_cooldown(self,eight_CD_turns=False):
-        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
-            if eight_CD_turns:
-                self.eight_CD_turns=eight_CD_turns
-                self.eight_on_cooldown=True
-            else:
-                silent_takedown.text_color='\033[0;30m'
-                silent_takedown.on_cooldown=True
-                self.eight_CD_turns-=1
-                if self.eight_CD_turns<=0:
-                    silent_takedown.text_color='\033[0m'
-                    silent_takedown.on_cooldown=False
-                    self.eight_on_cooldown=False
-        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
-            if eight_CD_turns:
-                self.eight_CD_turns=eight_CD_turns
-                self.eight_on_cooldown=True
-            else:
-                silent_takedown2.text_color='\033[0;30m'
-                silent_takedown2.on_cooldown=True
-                self.eight_CD_turns-=1
-                if self.eight_CD_turns<=0:
-                    silent_takedown2.text_color='\033[0m'
-                    silent_takedown2.on_cooldown=False
-                    self.eight_on_cooldown=False
-
-=======
->>>>>>> 1f5095da6b03c52fa718ae036bc39e153189c5aa
     def nine_cooldown(self,nine_CD_turns=False):
         if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
             if nine_CD_turns:
@@ -496,11 +441,7 @@ class fighter:
                     ryuu2.text_color='\033[0m'
                     ryuu2.on_cooldown=False
                     self.nine_on_cooldown=False
-<<<<<<< HEAD
 
-=======
-                    
->>>>>>> 1f5095da6b03c52fa718ae036bc39e153189c5aa
 class inv_item:
     def __init__(self,name,description) -> None:
         self.name=name
@@ -540,21 +481,12 @@ fissure2=attack('Fissure','Splits the ground in two, opponent may get caught.',3
 heal=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 heal2=attack('Heal','Heals 40 percent of max health.',48,30,'\033[0m')
 #Assassin Attacks
-<<<<<<< HEAD
 vampirism=attack('Vampirism','Steals health and applies bleed.',21,30,'\033[0m')
 vampirism2=attack('Vampirism','Steals health and applies bleed.',21,30,'\033[0m')
 silent_takedown=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',26,30,'\033[0m')
 silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',26,30,'\033[0m')
 ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
 ryuu2=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
-=======
-vampirism=attack('Vampirism','Steals health and applies bleed.',23,30,'\033[0m')
-vampirism2=attack('Vampirism','Steals health and applies bleed.',23,30,'\033[0m')
-silent_takedown=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
-silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',0,0,'\033[0m')
-ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',0,0,'\033[0m')
-ryuu2=attack('Ryuu','Strike like a dragon, applies bleed.',0,0,'\033[0m')
->>>>>>> 1f5095da6b03c52fa718ae036bc39e153189c5aa
 
 #Character Classes
 warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)

@@ -25,13 +25,10 @@ f_action={'Slash':'slash_attack',
 'Tornado Slash':'tornado_slash_attack',
 'Fissure':'fissure_attack',
 'Heal':'heal_attack',
-<<<<<<< HEAD
 'Vampirism':'vampirism_attack',
 'Silent Takedown':'silent_takedown_attack',
-'Ryuu':'ryuu_attack'}
-=======
+'Ryuu':'ryuu_attack',
 'Vampirism':'vampirism_attack'}
->>>>>>> 1f5095da6b03c52fa718ae036bc39e153189c5aa
 
 consumableact={'Hp Potion':'hp_consumable',
 'Attack Potion':'atk_consumable',
@@ -117,7 +114,7 @@ def heal_attack(player,oplayer) -> None:
     player.HP = min(player.HP,player.b_HP)
     player.stam -= Class_Character.heal.stam_use
     print(f'You heal {healhp} HP.')
-    print(f'Stamina - {Class_Character.fissure.stam_use}')
+    print(f'Stamina - {Class_Character.fissure.stam_use}\n')
     player.six_cooldown(4)
 
 #Assassin Attacks
@@ -129,9 +126,8 @@ def vampirism_attack(player,oplayer) -> None:
     player.HP += healhp
     player.stam -= Class_Character.vampirism.stam_use
     print(f'You deal {dmg} damage. Vampirism HP + {healhp}')
-    print(f'Stamina - {Class_Character.vampirism.stam_use}')
+    print(f'Stamina - {Class_Character.vampirism.stam_use}\n')
     player.seven_cooldown(4)
-<<<<<<< HEAD
     oplayer.r_dmg_three(2)
 
 def silent_takedown_attack(player,oplayer) -> None:
@@ -140,7 +136,7 @@ def silent_takedown_attack(player,oplayer) -> None:
     oplayer.HP -= dmg
     player.stam -= Class_Character.silent_takedown.stam_use
     print(f'You deal {dmg} damage.')
-    print(f'Stamina - {Class_Character.silent_takedown.stam_use}')
+    print(f'Stamina - {Class_Character.silent_takedown.stam_use}\n')
     player.eight_cooldown(4)
     oplayer.r_dmg_three(2)
 
@@ -150,11 +146,9 @@ def ryuu_attack(player,oplayer) -> None:
     oplayer.HP -= dmg
     player.stam -= Class_Character.ryuu.stam_use
     print(f'You deal {dmg} damage.')
-    print(f'Stamina - {Class_Character.ryuu.stam_use}')
+    print(f'Stamina - {Class_Character.ryuu.stam_use}\n')
     player.nine_cooldown(5)
     oplayer.r_dmg_three(2)
-=======
->>>>>>> 1f5095da6b03c52fa718ae036bc39e153189c5aa
 
 #Consumable Actions
 def hp_consumable(player):
