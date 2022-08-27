@@ -25,9 +25,13 @@ f_action={'Slash':'slash_attack',
 'Tornado Slash':'tornado_slash_attack',
 'Fissure':'fissure_attack',
 'Heal':'heal_attack',
+<<<<<<< HEAD
 'Vampirism':'vampirism_attack',
 'Silent Takedown':'silent_takedown_attack',
 'Ryuu':'ryuu_attack'}
+=======
+'Vampirism':'vampirism_attack'}
+>>>>>>> 1f5095da6b03c52fa718ae036bc39e153189c5aa
 
 consumableact={'Hp Potion':'hp_consumable',
 'Attack Potion':'atk_consumable',
@@ -127,6 +131,7 @@ def vampirism_attack(player,oplayer) -> None:
     print(f'You deal {dmg} damage. Vampirism HP + {healhp}')
     print(f'Stamina - {Class_Character.vampirism.stam_use}')
     player.seven_cooldown(4)
+<<<<<<< HEAD
     oplayer.r_dmg_three(2)
 
 def silent_takedown_attack(player,oplayer) -> None:
@@ -148,6 +153,8 @@ def ryuu_attack(player,oplayer) -> None:
     print(f'Stamina - {Class_Character.ryuu.stam_use}')
     player.nine_cooldown(5)
     oplayer.r_dmg_three(2)
+=======
+>>>>>>> 1f5095da6b03c52fa718ae036bc39e153189c5aa
 
 #Consumable Actions
 def hp_consumable(player):
