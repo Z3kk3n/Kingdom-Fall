@@ -56,7 +56,7 @@ class fighter:
         self.eight_on_cooldown=False
         self.nine_on_cooldown=False
         self.ten_on_cooldown=False
-        self.elevan_on_cooldown=False
+        self.eleven_on_cooldown=False
         self.twelve_on_cooldown=False
         self.thirteen_on_cooldown=False
         self.fourteen_on_cooldown=False
@@ -207,6 +207,12 @@ class fighter:
             self.eight_cooldown()
         if self.nine_on_cooldown:
             self.nine_cooldown()
+        if self.ten_on_cooldown:
+            self.ten_cooldown()
+        if self.eleven_on_cooldown:
+            self.eleven_cooldown()
+        if self.twelve_on_cooldown:
+            self.twelve_cooldown()
 
     def one_cooldown(self,one_CD_turns=False):
         if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
@@ -442,6 +448,84 @@ class fighter:
                     ryuu2.on_cooldown=False
                     self.nine_on_cooldown=False
 
+    def ten_cooldown(self,ten_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if ten_CD_turns:
+                self.ten_CD_turns=ten_CD_turns
+                self.ten_on_cooldown=True
+            else:
+                firework.text_color='\033[0;30m'
+                firework.on_cooldown=True
+                self.ten_CD_turns-=1
+                if self.ten_CD_turns<=0:
+                    firework.text_color='\033[0m'
+                    firework.on_cooldown=False
+                    self.te_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if ten_CD_turns:
+                self.ten_CD_turns=ten_CD_turns
+                self.ten_on_cooldown=True
+            else:
+                firework2.text_color='\033[0;30m'
+                firework2.on_cooldown=True
+                self.ten_CD_turns-=1
+                if self.ten_CD_turns<=0:
+                    firework2.text_color='\033[0m'
+                    firework2.on_cooldown=False
+                    self.ten_on_cooldown=False
+
+    def eleven_cooldown(self,eleven_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if eleven_CD_turns:
+                self.eleven_CD_turns=eleven_CD_turns
+                self.eleven_on_cooldown=True
+            else:
+                deliberate_miss.text_color='\033[0;30m'
+                deliberate_miss.on_cooldown=True
+                self.eleven_CD_turns-=1
+                if self.eleven_CD_turns<=0:
+                    deliberate_miss.text_color='\033[0m'
+                    deliberate_miss.on_cooldown=False
+                    self.eleven_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if eleven_CD_turns:
+                self.eleven_CD_turns=eleven_CD_turns
+                self.eleven_on_cooldown=True
+            else:
+                deliberate_miss2.text_color='\033[0;30m'
+                deliberate_miss2.on_cooldown=True
+                self.eleven_CD_turns-=1
+                if self.eleven_CD_turns<=0:
+                    deliberate_miss2.text_color='\033[0m'
+                    deliberate_miss2.on_cooldown=False
+                    self.eleven_on_cooldown=False
+
+    def twelve_cooldown(self,twelve_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if twelve_CD_turns:
+                self.twelve_CD_turns=twelve_CD_turns
+                self.twelve_on_cooldown=True
+            else:
+                hwacha.text_color='\033[0;30m'
+                hwacha.on_cooldown=True
+                self.twelve_CD_turns-=1
+                if self.twelve_CD_turns<=0:
+                    hwacha.text_color='\033[0m'
+                    hwacha.on_cooldown=False
+                    self.twelve_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if twelve_CD_turns:
+                self.twelve_CD_turns=twelve_CD_turns
+                self.twelve_on_cooldown=True
+            else:
+                hwacha2.text_color='\033[0;30m'
+                hwacha2.on_cooldown=True
+                self.twelve_CD_turns-=1
+                if self.twelve_CD_turns<=0:
+                    hwacha2.text_color='\033[0m'
+                    hwacha2.on_cooldown=False
+                    self.twelve_on_cooldown=False
+
 class inv_item:
     def __init__(self,name,description) -> None:
         self.name=name
@@ -487,10 +571,18 @@ silent_takedown=attack('Silent Takedown','Stealth behind the enemy and attack, a
 silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, applies bleed.',26,30,'\033[0m')
 ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
 ryuu2=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
+#Knight Attacks
+#Archer Attacks
+firework=attack('Firework','Fires an arrow tipped with a small bomb.',15,30,'\033[0m')
+firework2=attack('Firework','Fires an arrow tipped with a small bomb.',15,30,'\033[0m')
+deliberate_miss=attack('Deliberate Miss','Fire a bomb arrow near the ground. Opponent speed and damage down.',10,40,'\033[0m')
+deliberate_miss2=attack('Deliberate Miss','Fire a bomb arrow near the ground. Opponent speed and damage down.',10,40,'\033[0m')
+hwacha=attack('Hwacha','Rain of firework arrows. Pure damage but slow cooldown.',28,50,'\033[0m')
+hwacha2=attack('Hwacha','Rain of firework arrows. Pure damage but slow cooldown.',28,50,'\033[0m')
 
 #Character Classes
-warrior=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)
-warrior2=fighter('Warrior','Jack of all trades... master of none.',100,100,25,25,5,5,100,100,100,100)
+warrior=fighter('Warrior','Jack of all trades... master of none.',120,120,25,25,5,5,100,100,100,100)
+warrior2=fighter('Warrior','Jack of all trades... master of none.',120,120,25,25,5,5,100,100,100,100)
 warrior.atk_useable[slash]=slash
 warrior2.atk_useable[slash2]=slash2
 warrior.atk_useable[sword_tackle]=sword_tackle
@@ -508,8 +600,8 @@ warrior2.atk_useableS['Fire Slash']=fire_slash2
 warrior.atk_useableS['Shield Bash']=shield_bash
 warrior2.atk_useableS['Shield Bash']=shield_bash2
 
-paladin=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80,80,80)
-paladin2=fighter('Paladin','Excels at defense, healing, and lingering effects.',120,120,20,20,6,6,80,80,80,80)
+paladin=fighter('Paladin','Excels at defense, healing, and lingering effects.',140,140,20,20,6,6,80,80,80,80)
+paladin2=fighter('Paladin','Excels at defense, healing, and lingering effects.',140,140,20,20,6,6,80,80,80,80)
 paladin.atk_useable[slash]=slash
 paladin2.atk_useable[slash2]=slash2
 paladin.atk_useable[tornado_slash]=tornado_slash
@@ -527,8 +619,8 @@ paladin2.atk_useableS['Fissure']=fissure2
 paladin.atk_useableS['Heal']=heal
 paladin2.atk_useableS['Heal']=heal2
 
-assassin=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
-assassin2=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',80,80,25,25,5,5,130,130,90,90)
+assassin=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',100,100,25,25,5,5,130,130,90,90)
+assassin2=fighter('Assassin','Fastest class. Applys bleed effect with most moves.',100,100,25,25,5,5,130,130,90,90)
 assassin.atk_useable[slash]=slash
 assassin2.atk_useable[slash2]=slash2
 assassin.atk_useable[vampirism]=vampirism
@@ -546,18 +638,32 @@ assassin2.atk_useableS['Silent Takedown']=silent_takedown2
 assassin.atk_useableS['Ryuu']=ryuu
 assassin2.atk_useableS['Ryuu']=ryuu2
 
-knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,120,100,100)
-knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',120,120,20,20,6,6,120,120,100,100)
+knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
+knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
 knight.atk_useable['Slash']=slash
 knight2.atk_useable['Slash']=slash
 
-archer=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',80,80,30,30,4,4,110,110,110,110)
-archer2=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',80,80,30,30,4,4,110,110,110,110)
-archer.atk_useable['Arrow']=arrow
-archer2.atk_useable['Arrow']=arrow
+archer=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)
+archer2=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)
+archer.atk_useable[arrow]=arrow
+archer2.atk_useable[arrow2]=arrow2
+archer.atk_useable[firework]=firework
+archer2.atk_useable[firework2]=firework2
+archer.atk_useable[deliberate_miss]=deliberate_miss
+archer2.atk_useable[deliberate_miss2]=deliberate_miss2
+archer.atk_useable[hwacha]=hwacha
+archer2.atk_useable[hwacha2]=hwacha2
+archer.atk_useableS['Arrow']=arrow
+archer2.atk_useableS['Arrow']=arrow2
+archer.atk_useableS['Firework']=firework
+archer2.atk_useableS['Firework']=firework2
+archer.atk_useableS['Deliberate Miss']=deliberate_miss
+archer2.atk_useableS['Deliberate Miss']=deliberate_miss2
+archer.atk_useableS['Hwacha']=hwacha
+archer2.atk_useableS['Hwacha']=hwacha2
 
-mage=fighter('Mage','Slow but very powerful attacks. Low defense',100,100,30,30,4,4,70,70,120,120)
-mage2=fighter('Mage','Slow but very powerful attacks. Low defense',100,100,30,30,4,4,70,70,120,120)
+mage=fighter('Mage','Slow but very powerful attacks. Low defense',120,120,30,30,4,4,70,70,120,120)
+mage2=fighter('Mage','Slow but very powerful attacks. Low defense',120,120,30,30,4,4,70,70,120,120)
 mage.atk_useable['Fireball']=fireball
 mage2.atk_useable['Fireball']=fireball
 

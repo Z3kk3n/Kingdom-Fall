@@ -28,7 +28,10 @@ f_action={'Slash':'slash_attack',
 'Vampirism':'vampirism_attack',
 'Silent Takedown':'silent_takedown_attack',
 'Ryuu':'ryuu_attack',
-'Vampirism':'vampirism_attack'}
+'Vampirism':'vampirism_attack',
+'Firework':'firework_attack',
+'Deliberate Miss':'deliberate_miss_attack',
+'Hwacha':'hwacha_attack'}
 
 consumableact={'Hp Potion':'hp_consumable',
 'Attack Potion':'atk_consumable',
@@ -127,7 +130,7 @@ def vampirism_attack(player,oplayer) -> None:
     player.stam -= Class_Character.vampirism.stam_use
     print(f'You deal {dmg} damage. Vampirism HP + {healhp}')
     print(f'Stamina - {Class_Character.vampirism.stam_use}\n')
-    player.seven_cooldown(4)
+    player.seven_cooldown(3)
     oplayer.r_dmg_three(2)
 
 def silent_takedown_attack(player,oplayer) -> None:
@@ -149,6 +152,36 @@ def ryuu_attack(player,oplayer) -> None:
     print(f'Stamina - {Class_Character.ryuu.stam_use}\n')
     player.nine_cooldown(5)
     oplayer.r_dmg_three(2)
+
+#Knight Attacks
+
+#Archer Attacks
+def firework_attack(player,oplayer) -> None:
+    dmg = Class_Character.firework.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.firework.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.firework.stam_use}\n')
+    player.ten_cooldown(3)
+
+def deliberate_miss_attack(player,oplayer) -> None:
+    dmg = Class_Character.deliberate_miss.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.deliberate_miss.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.deliberate_miss.stam_use}\n')
+    player.eleven_cooldown(4)
+
+def hwacha_attack(player,oplayer) -> None:
+    dmg = Class_Character.hwacha.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.hwacha.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.hwacha.stam_use}\n')
+    player.twelve_cooldown(5)
 
 #Consumable Actions
 def hp_consumable(player):
@@ -177,7 +210,7 @@ def spd_consumable(player):
 
 #Main Actions
 def Inv(player,oplayer) -> None:
-    print("Chose an item or type 'Close'.")
+    print("Chose an item. Type 'Close' to exit or 'None' to cancel your choice.")
 
     selected_item=None
     for index,item in enumerate(player.consumable):
@@ -185,6 +218,9 @@ def Inv(player,oplayer) -> None:
 
     selection=input('>')
     if selection=='Close' or selection=='close':
+        return
+    elif selection=='None' or selection=='none':
+        player.selected_item=None
         return
     try:
         selection = int(selection)-1
@@ -199,14 +235,17 @@ def Inv(player,oplayer) -> None:
             return selected_item
 
 def Fight_Opp(player,oplayer) -> None:
-    print("Chose an attack or type 'Close'.")
+    print("Chose an attack. Type 'Close' to exit or 'None' to cancel your choise.")
     while True:
         selected_atk=None
         for index,attack in enumerate(player.atk_useable):
-            print(f'{attack.text_color}[{index+1}] {attack.name}')
+            print(f'{attack.text_color}[{index+1}] {attack.name} -- {attack.desc}')
 
         selectionA=input('\033[0m>')
         if selectionA=='Close' or selectionA=='close':
+            return
+        elif selectionA=='None' or selectionA=='none':
+            player.selected_atk=None
             return
         try:
             selectionA = int(selectionA)-1
@@ -220,6 +259,8 @@ def Fight_Opp(player,oplayer) -> None:
 
         if selected_atk not in player.atk_useable:
             pass
+        elif selected_atk.stam_use>=player.stam:
+            print('You do not have enough stamina for that move.')
         else:
             if selected_atk.on_cooldown:
                 print("You are still tired out from this attack. You're on cooldown.")

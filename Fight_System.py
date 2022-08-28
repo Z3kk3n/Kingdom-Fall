@@ -20,7 +20,7 @@ print('\nNOTE: Game is NOT capital letter dependent. You can also type the numbe
 
 while True:
     game_start=input("Ready to battle? Type 'Fight'!\n>")
-    if game_start=='Fight' or game_start=='fight' or game_start=='test1' or game_start=='test2' or game_start=='test3':
+    if game_start=='Fight' or game_start=='fight' or game_start=='test1' or game_start=='test2' or game_start=='test3' or game_start=='test4' or game_start=='test5' or game_start=='test6':
         break
     else:
         pass
@@ -116,6 +116,15 @@ elif game_start == 'test2':
 elif game_start == 'test3':
     player1 = Class_Character.assassin
     player2 = Class_Character.assassin2
+elif game_start == 'test4':
+    player1 = Class_Character.knight
+    player2 = Class_Character.knight2
+elif game_start == 'test5':
+    player1 = Class_Character.archer
+    player2 = Class_Character.archer2
+elif game_start == 'test6':
+    player1 = Class_Character.mage
+    player2 = Class_Character.mage2
 else:
     os.system('cls')
     exit()
