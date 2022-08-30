@@ -726,7 +726,7 @@ assassin2.atk_useableS['Ryuu']=ryuu2
 knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
 knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
 knight.atk_useable['Slash']=slash
-knight2.atk_useable['Slash']=slash
+knight2.atk_useable['Slash']=slash2
 
 archer=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)
 archer2=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)
@@ -764,8 +764,6 @@ mage.atk_useable['Ground Lance']=ground_lance
 mage2.atk_useable['Ground Lance']=ground_lance2
 mage.atk_useable['Explosion']=explosion
 mage2.atk_useable['Explosion']=explosion2
-
-
 
 #Class Dictionaries
 playable={}
