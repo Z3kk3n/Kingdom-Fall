@@ -526,6 +526,84 @@ class fighter:
                     hwacha2.on_cooldown=False
                     self.twelve_on_cooldown=False
 
+    def thirteen_cooldown(self,thirteen_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if thirteen_CD_turns:
+                self.thirteen_CD_turns=thirteen_CD_turns
+                self.thirteen_on_cooldown=True
+            else:
+                frost_heal.text_color='\033[0;30m'
+                frost_heal.on_cooldown=True
+                self.thirteen_CD_turns-=1
+                if self.thirteen_CD_turns<=0:
+                    frost_heal.text_color='\033[0m'
+                    frost_heal.on_cooldown=False
+                    self.thirteen_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if thirteen_CD_turns:
+                self.thirteen_CD_turns=thirteen_CD_turns
+                self.thirteen_on_cooldown=True
+            else:
+                frost_heal2.text_color='\033[0;30m'
+                frost_heal2.on_cooldown=True
+                self.thirteen_CD_turns-=1
+                if self.thirteen_CD_turns<=0:
+                    frost_heal2.text_color='\033[0m'
+                    frost_heal2.on_cooldown=False
+                    self.thirteen_on_cooldown=False
+
+    def fourteen_cooldown(self,fourteen_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if fourteen_CD_turns:
+                self.fourteen_CD_turns=fourteen_CD_turns
+                self.fourteen_on_cooldown=True
+            else:
+                ground_lance.text_color='\033[0;30m'
+                ground_lance.on_cooldown=True
+                self.fourteen_CD_turns-=1
+                if self.fourteen_CD_turns<=0:
+                    ground_lance.text_color='\033[0m'
+                    ground_lance.on_cooldown=False
+                    self.fourteen_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if fourteen_CD_turns:
+                self.fourteen_CD_turns=fourteen_CD_turns
+                self.fourteen_on_cooldown=True
+            else:
+                ground_lance2.text_color='\033[0;30m'
+                ground_lance2.on_cooldown=True
+                self.fourteen_CD_turns-=1
+                if self.fourteen_CD_turns<=0:
+                    ground_lance2.text_color='\033[0m'
+                    ground_lance2.on_cooldown=False
+                    self.fourteen_on_cooldown=False
+
+    def fifteen_cooldown(self,fifteen_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if fifteen_CD_turns:
+                self.fifteen_CD_turns=fifteen_CD_turns
+                self.fifteen_on_cooldown=True
+            else:
+                explosion.text_color='\033[0;30m'
+                explosion.on_cooldown=True
+                self.fifteen_CD_turns-=1
+                if self.fifteen_CD_turns<=0:
+                    explosion.text_color='\033[0m'
+                    explosion.on_cooldown=False
+                    self.fifteen_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if fifteen_CD_turns:
+                self.fifteen_CD_turns=fifteen_CD_turns
+                self.fifteen_on_cooldown=True
+            else:
+                explosion2.text_color='\033[0;30m'
+                explosion2.on_cooldown=True
+                self.fifteen_CD_turns-=1
+                if self.fifteen_CD_turns<=0:
+                    explosion2.text_color='\033[0m'
+                    explosion2.on_cooldown=False
+                    self.fifteen_on_cooldown=False
+
 class inv_item:
     def __init__(self,name,description) -> None:
         self.name=name
@@ -579,6 +657,13 @@ deliberate_miss=attack('Deliberate Miss','Fire a bomb arrow near the ground. Opp
 deliberate_miss2=attack('Deliberate Miss','Fire a bomb arrow near the ground. Opponent speed and damage down.',10,40,'\033[0m')
 hwacha=attack('Hwacha','Rain of firework arrows. Pure damage but slow cooldown.',28,50,'\033[0m')
 hwacha2=attack('Hwacha','Rain of firework arrows. Pure damage but slow cooldown.',28,50,'\033[0m')
+#Mage Attacks
+frost_heal=attack('Frost Heal','Heal so potent and ice blast is released.',10,30,'\033[0m')
+frost_heal2=attack('Frost Heal','Heal so potent and ice blast is released.',10,30,'\033[0m')
+ground_lance=attack('Ground Lance','Break apart the earth into lances',10,30,'\033[0m')
+ground_lance2=attack('Ground Lance','Break apart the earth into lances',10,30,'\033[0m')
+explosion=attack('Explosion','EX-CI-PA-LO-SION, Big Boom, Big Damage.',30,50,'\033[0m')
+explosion2=attack('Explosion','EX-CI-PA-LO-SION, Big Boom, Big Damage.',30,50,'\033[0m')
 
 #Character Classes
 warrior=fighter('Warrior','Jack of all trades... master of none.',120,120,25,25,5,5,100,100,100,100)
