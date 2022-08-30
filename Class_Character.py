@@ -757,6 +757,7 @@ mage.atk_useable[ground_lance]=ground_lance
 mage2.atk_useable[ground_lance2]=ground_lance2
 mage.atk_useable[explosion]=explosion
 mage2.atk_useable[explosion2]=explosion2
+mage.atk_useable['Fireball']=fireball
 mage2.atk_useable['Fireball']=fireball2
 mage.atk_useable['Frost Heal']=frost_heal
 mage2.atk_useable['Frost Heal']=frost_heal2
