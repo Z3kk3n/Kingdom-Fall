@@ -726,7 +726,7 @@ assassin2.atk_useableS['Ryuu']=ryuu2
 knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
 knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
 knight.atk_useable['Slash']=slash
-knight2.atk_useable['Slash']=slash
+knight2.atk_useable['Slash']=slash2
 
 archer=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)
 archer2=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)
@@ -749,11 +749,22 @@ archer2.atk_useableS['Hwacha']=hwacha2
 
 mage=fighter('Mage','Slow but very powerful attacks. Low defense',120,120,30,30,4,4,70,70,120,120)
 mage2=fighter('Mage','Slow but very powerful attacks. Low defense',120,120,30,30,4,4,70,70,120,120)
+mage.atk_useable[fireball]=fireball
+mage2.atk_useable[fireball2]=fireball2
+mage.atk_useable[frost_heal]=frost_heal
+mage2.atk_useable[frost_heal2]=frost_heal2
+mage.atk_useable[ground_spear]=ground_spear
+mage2.atk_useable[ground_spear2]=ground_spear2
+mage.atk_useable[explosion]=explosion
+mage2.atk_useable[explosion2]=explosion2
 mage.atk_useable['Fireball']=fireball
-mage2.atk_useable['Fireball']=fireball
-
-
-
+mage2.atk_useable['Fireball']=fireball2
+mage.atk_useable['Frost Heal']=frost_heal
+mage2.atk_useable['Frost Heal']=frost_heal2
+mage.atk_useable['Ground Spear']=ground_spear
+mage2.atk_useable['Ground Spear']=ground_spear2
+mage.atk_useable['Explosion']=explosion
+mage2.atk_useable['Explosion']=explosion2
 
 #Class Dictionaries
 playable={}
