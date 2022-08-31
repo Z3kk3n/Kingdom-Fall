@@ -227,6 +227,8 @@ class fighter:
             self.fourteen_cooldown()
         if self.fifteen_on_cooldown:
             self.fifteen_cooldown()
+        if self.knight_on_cooldown:
+            self.knight_cooldown()
 
     def one_cooldown(self,one_CD_turns=False):
         if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
@@ -618,6 +620,48 @@ class fighter:
                     explosion2.on_cooldown=False
                     self.fifteen_on_cooldown=False
 
+    def knight_cooldown(self,knight_CD_turns=False):
+        if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
+            if knight_CD_turns:
+                self.knight_CD_turns=knight_CD_turns
+                self.knight_on_cooldown=True
+            else:
+                skewer.text_color='\033[0;30m'
+                skewer.on_cooldown=True
+                horse_trample.text_color='\033[0;30m'
+                horse_trample.on_cooldown=True
+                heavy_cavalry.text_color='\033[0;30m'
+                heavy_cavalry.on_cooldown=True
+                self.knight_CD_turns-=1
+                if self.knight_CD_turns<=0:
+                    skewer.text_color='\033[0m'
+                    skewer.on_cooldown=False
+                    horse_trample.text_color='\033[0m'
+                    horse_trample.on_cooldown=False
+                    heavy_cavalry.text_color='\033[0m'
+                    heavy_cavalry.on_cooldown=False
+                    self.knight_on_cooldown=False
+        elif self==warrior2 or self==paladin2 or self==assassin2 or self==knight2 or self==archer2 or self==mage2:
+            if knight_CD_turns:
+                self.knight_CD_turns=knight_CD_turns
+                self.knight_on_cooldown=True
+            else:
+                skewer2.text_color='\033[0;30m'
+                skewer2.on_cooldown=True
+                horse_trample2.text_color='\033[0;30m'
+                horse_trample2.on_cooldown=True
+                heavy_cavalry2.text_color='\033[0;30m'
+                heavy_cavalry2.on_cooldown=True
+                self.knight_CD_turns-=1
+                if self.knight_CD_turns<=0:
+                    skewer2.text_color='\033[0m'
+                    skewer2.on_cooldown=False
+                    horse_trample2.text_color='\033[0m'
+                    horse_trample2.on_cooldown=False
+                    heavy_cavalry2.text_color='\033[0m'
+                    heavy_cavalry2.on_cooldown=False
+                    self.knight_on_cooldown=False
+
 class inv_item:
     def __init__(self,name,description) -> None:
         self.name=name
@@ -668,6 +712,12 @@ silent_takedown2=attack('Silent Takedown','Stealth behind the enemy and attack, 
 ryuu=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
 ryuu2=attack('Ryuu','Strike like a dragon, applies bleed.',30,50,'\033[0m')
 #Knight Attacks
+skewer=attack('Skewer','Attack with your lance lessens opponent speed.',20,40,'\033[0m')
+skewer2=attack('Skewer','Attack with your lance lessens opponent speed.',20,40,'\033[0m')
+horse_trample=attack('Horse Trample','Your horse attacks while you defend might block damage.',25,45,'\033[0m')
+horse_trample2=attack('Horse Trample','Your horse attacks while you defend might block damage.',25,45,'\033[0m')
+heavy_cavalry=attack('Heavy Cavalry','Armor your horse and attack in tandem.',40,50,'\033[0m')
+heavy_cavalry2=attack('Heavy Cavalry','Armor your horse and attack in tandem.',40,50,'\033[0m')
 #Archer Attacks
 firework=attack('Firework','Fires an arrow tipped with a small bomb.',15,30,'\033[0m')
 firework2=attack('Firework','Fires an arrow tipped with a small bomb.',15,30,'\033[0m')
@@ -743,8 +793,22 @@ assassin2.atk_useableS['Ryuu']=ryuu2
 
 knight=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
 knight2=fighter('Knight','Hits for 2 turns worth of damage. Rides on horseback, takes a turn to regain momentum',140,140,20,20,6,6,120,120,100,100)
-knight.atk_useable['Slash']=slash
-knight2.atk_useable['Slash']=slash2
+knight.atk_useable[slash]=slash
+knight2.atk_useable[slash2]=slash2
+knight.atk_useable[skewer]=skewer
+knight2.atk_useable[skewer2]=skewer2
+knight.atk_useable[horse_trample]=horse_trample
+knight2.atk_useable[horse_trample2]=horse_trample2
+knight.atk_useable[heavy_cavalry]=heavy_cavalry
+knight2.atk_useable[heavy_cavalry2]=heavy_cavalry2
+knight.atk_useableS['Slash']=slash
+knight2.atk_useableS['Slash']=slash2
+knight.atk_useableS['Skewer']=skewer
+knight2.atk_useableS['Skewer']=skewer2
+knight.atk_useableS['Horse Trample']=horse_trample
+knight2.atk_useableS['Horse Trample']=horse_trample2
+knight.atk_useableS['Heavy Cavalry']=heavy_cavalry
+knight2.atk_useableS['Heavy Cavalry']=heavy_cavalry2
 
 archer=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)
 archer2=fighter('Archer','Pretty fast. Deals good damage with snipes in between armor.',100,100,30,30,4,4,110,110,110,110)

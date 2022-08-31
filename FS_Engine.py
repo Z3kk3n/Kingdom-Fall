@@ -1,4 +1,5 @@
 from logging import PlaceHolder
+from math import ceil
 from opcode import HAVE_ARGUMENT
 import string
 import Class_Character
@@ -28,7 +29,9 @@ f_action={'Slash':'slash_attack',
 'Vampirism':'vampirism_attack',
 'Silent Takedown':'silent_takedown_attack',
 'Ryuu':'ryuu_attack',
-'Vampirism':'vampirism_attack',
+'Skewer':'skewer_attack',
+'Horse Trample':'horse_trample_attack',
+'Heavy Cavalry':'heavy_cavalry_attack',
 'Firework':'firework_attack',
 'Deliberate Miss':'deliberate_miss_attack',
 'Hwacha':'hwacha_attack',
@@ -160,6 +163,34 @@ def ryuu_attack(player,oplayer) -> None:
     oplayer.r_dmg_three(2)
 
 #Knight Attacks
+def skewer_attack(player,oplayer) -> None:
+    dmg = Class_Character.skewer.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.skewer.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.skewer.stam_use}\n')
+    player.knight_cooldown(2)
+    oplayer.paladin_slow(1)
+
+def horse_trample_attack(player,oplayer) -> None:
+    dmg = Class_Character.horse_trample.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.horse_trample.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.horse_trample.stam_use}\n')
+    player.knight_cooldown(2)
+    oplayer.deflect(1)
+
+def heavy_cavalry_attack(player,oplayer) -> None:
+    dmg = Class_Character.heavy_cavalry.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.heavy_cavalry.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.heavy_cavalry.stam_use}\n')
+    player.knight_cooldown(2)
 
 #Archer Attacks
 def firework_attack(player,oplayer) -> None:
