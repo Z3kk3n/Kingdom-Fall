@@ -6,12 +6,6 @@ import Class_Character
 
 #Holds most dictionaries and functions.
 
-#Notes for me:
-    #Remember to use .name when eval from class so as to not return the object but the name string.
-    #Think about game disign of speed stat and items.
-    #Inv() and fight functions need help.
-
-
 #Dictionaries
 action={'Fight':'Fight_Opp','fight':'Fight_Opp','1':'Fight_Opp',
 'Bag':'Inv','bag':'Inv','2':'Inv',
