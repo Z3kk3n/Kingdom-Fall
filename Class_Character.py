@@ -863,6 +863,3 @@ playable2['Assassin']=assassin2
 playable2['Knight']=knight2
 playable2['Archer']=archer2
 playable2['Mage']=mage2
-
-#consumable={}
-#consumable['Hp Potion']=hp_potion
