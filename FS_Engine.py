@@ -31,9 +31,14 @@ f_action={'Slash':'slash_attack',
 'Vampirism':'vampirism_attack',
 'Firework':'firework_attack',
 'Deliberate Miss':'deliberate_miss_attack',
-'Hwacha':'hwacha_attack'}
+'Hwacha':'hwacha_attack',
+'Frost Heal':'frost_heal_attack',
+'Ground Lance':'ground_lance_attack',
+'Explosion':'explosion_attack'}
 
-consumableact={'Hp Potion':'hp_consumable',
+consumableact={'Hp Potion 1':'hp_consumable',
+'Hp Potion 2':'hp_consumable',
+'Hp Potion 3':'hp_consumable',
 'Attack Potion':'atk_consumable',
 'Defense Potion':'defn_consumable',
 'Speed Potion':'spd_consumable'}
@@ -126,6 +131,7 @@ def vampirism_attack(player,oplayer) -> None:
     round(dmg)
     healhp = dmg / 2
     oplayer.HP -= dmg
+    player.HP = min(player.HP,player.b_HP)
     player.HP += healhp
     player.stam -= Class_Character.vampirism.stam_use
     print(f'You deal {dmg} damage. Vampirism HP + {healhp}')
@@ -173,6 +179,8 @@ def deliberate_miss_attack(player,oplayer) -> None:
     print(f'You deal {dmg} damage.')
     print(f'Stamina - {Class_Character.deliberate_miss.stam_use}\n')
     player.eleven_cooldown(4)
+    oplayer.paladin_slow(2)
+    oplayer.deflect(1)
 
 def hwacha_attack(player,oplayer) -> None:
     dmg = Class_Character.hwacha.base_dmg * player.atk / oplayer.defn / 4
@@ -182,6 +190,39 @@ def hwacha_attack(player,oplayer) -> None:
     print(f'You deal {dmg} damage.')
     print(f'Stamina - {Class_Character.hwacha.stam_use}\n')
     player.twelve_cooldown(5)
+
+#Mage Attacks
+def frost_heal_attack(player,oplayer) -> None:
+    dmg = Class_Character.frost_heal.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    healhp = dmg / 2
+    player.HP += healhp
+    player.HP = min(player.HP,player.b_HP)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.frost_heal.stam_use
+    print(f'You deal {dmg} damage and heal {healhp}.')
+    print(f'Stamina - {Class_Character.frost_heal.stam_use}\n')
+    player.thirteen_cooldown(2)
+
+def ground_lance_attack(player,oplayer) -> None:
+    dmg = Class_Character.ground_lance.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.ground_lance.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.ground_lance.stam_use}\n')
+    player.fourteen_cooldown(2)
+    oplayer.paladin_slow(1)
+
+def explosion_attack(player,oplayer) -> None:
+    dmg = Class_Character.explosion.base_dmg * player.atk / oplayer.defn / 4
+    round(dmg)
+    oplayer.HP -= dmg
+    player.stam -= Class_Character.explosion.stam_use
+    print(f'You deal {dmg} damage.')
+    print(f'Stamina - {Class_Character.explosion.stam_use}\n')
+    player.fifteen_cooldown(5)
+    oplayer.r_dmg_three(3)
 
 #Consumable Actions
 def hp_consumable(player):
@@ -211,27 +252,30 @@ def spd_consumable(player):
 #Main Actions
 def Inv(player,oplayer) -> None:
     print("Chose an item. Type 'Close' to exit or 'None' to cancel your choice.")
-
-    selected_item=None
-    for index,item in enumerate(player.consumable):
-        print(f'[{index+1}] {item}')
-
-    selection=input('>')
-    if selection=='Close' or selection=='close':
-        return
-    elif selection=='None' or selection=='none':
-        player.selected_item=None
-        return
-    try:
-        selection = int(selection)-1
+    while True:
+        selected_item=None
         for index,item in enumerate(player.consumable):
-            if index == selection:
-                selected_item= player.consumable[item]
-                return selected_item
-    except ValueError:
-        selection=string.capwords(selection)
-        if selection in player.consumable:
-            selected_item= player.consumable[selection]
+            print(f'[{index+1}] {item.name} -- {item.desc}')
+
+        selection=input('>')
+        if selection=='Close' or selection=='close':
+            return
+        elif selection=='None' or selection=='none':
+            player.selected_item=None
+            return
+        try:
+            selection = int(selection)-1
+            for index,item in enumerate(player.consumable):
+                if index == selection:
+                    selected_item= player.consumable[item]
+        except ValueError:
+            selection=string.capwords(selection)
+            if selection in player.consumableS:
+                selected_item= player.consumableS[selection]
+
+        if selected_item not in player.consumable:
+            pass
+        else:
             return selected_item
 
 def Fight_Opp(player,oplayer) -> None:

@@ -20,10 +20,18 @@ class fighter:
         self.atk_useable={}
         self.atk_useableS={}
         self.selected_atk=None
-        self.consumable={'Hp Potion':inv_item('Hp Potion','Heals charater for half of missing HP.'),
-                        'Attack Potion':inv_item('Attack Potion','Increases player attack for one turn.'),
-                        'Defense Potion':inv_item('Defense Potion','Increases player defense for one turn.'),
-                        'Speed Potion':inv_item('Speed Potion','Increases player speed for one turn.')}
+        self.consumable={hp_potion_one:hp_potion_one,
+                        hp_potion_two:hp_potion_two,
+                        hp_potion_three:hp_potion_three,
+                        attack_potion:attack_potion,
+                        defense_potion:defense_potion,
+                        speed_potion:speed_potion}
+        self.consumableS={'Hp Potion 1':hp_potion_one,
+                        'Hp Potion 2':hp_potion_two,
+                        'Hp Potion 3':hp_potion_three,
+                        'Attack Potion':attack_potion,
+                        'Defense Potion':defense_potion,
+                        'Speed Potion':speed_potion}
         self.selected_item=None
     #Booleans and Turns for statis conditions
         #Bad:
@@ -99,7 +107,7 @@ class fighter:
             self.turn_of_dmg_three=turn_of_dmg_three
             self.dmging_three=True
         else:
-            print('Bleed - 3 HP.')
+            print('You take 3 damage.')
             self.HP-=3
             self.turn_of_dmg_three-=1
             if self.turn_of_dmg_three<=0:
@@ -213,6 +221,12 @@ class fighter:
             self.eleven_cooldown()
         if self.twelve_on_cooldown:
             self.twelve_cooldown()
+        if self.thirteen_on_cooldown:
+            self.thirteen_cooldown()
+        if self.fourteen_on_cooldown:
+            self.fourteen_cooldown()
+        if self.fifteen_on_cooldown:
+            self.fifteen_cooldown()
 
     def one_cooldown(self,one_CD_turns=False):
         if self==warrior or self==paladin or self==assassin or self==knight or self==archer or self==mage:
@@ -619,8 +633,12 @@ class attack:
         self.on_cooldown=on_cooldown
 
 #Inventory Items
-#hp_potion=inv_item('Hp Potion','Heals charater for half of missing HP.')
-
+hp_potion_one=inv_item('Hp Potion 1','Heals charater for half of missing HP.')
+hp_potion_two=inv_item('Hp Potion 2','Heals charater for half of missing HP.')
+hp_potion_three=inv_item('Hp Potion 3','Heals charater for half of missing HP.')
+attack_potion=inv_item('Attack Potion','Increases player attack for one turn.')
+defense_potion=inv_item('Defense Potion','Increases player defense for one turn.')
+speed_potion=inv_item('Speed Potion','Increases player speed for one turn.')
 #Basic Attacks
 slash=attack('Slash','Basic attack. Deals 7 true damage.',7,15,'\033[0m')
 slash2=attack('Slash','Basic attack. Deals 7 true damage.',7,15,'\033[0m')
@@ -662,8 +680,8 @@ frost_heal=attack('Frost Heal','Heal so potent and ice blast is released.',10,30
 frost_heal2=attack('Frost Heal','Heal so potent and ice blast is released.',10,30,'\033[0m')
 ground_lance=attack('Ground Lance','Break apart the earth into lances',10,30,'\033[0m')
 ground_lance2=attack('Ground Lance','Break apart the earth into lances',10,30,'\033[0m')
-explosion=attack('Explosion','EX-CI-PA-LO-SION, Big Boom, Big Damage.',30,50,'\033[0m')
-explosion2=attack('Explosion','EX-CI-PA-LO-SION, Big Boom, Big Damage.',30,50,'\033[0m')
+explosion=attack('Explosion','EX-CI-PA-LO-SION, Big Boom, Big Damage.',25,50,'\033[0m')
+explosion2=attack('Explosion','EX-CI-PA-LO-SION, Big Boom, Big Damage.',25,50,'\033[0m')
 
 #Character Classes
 warrior=fighter('Warrior','Jack of all trades... master of none.',120,120,25,25,5,5,100,100,100,100)
@@ -757,14 +775,14 @@ mage.atk_useable[ground_lance]=ground_lance
 mage2.atk_useable[ground_lance2]=ground_lance2
 mage.atk_useable[explosion]=explosion
 mage2.atk_useable[explosion2]=explosion2
-mage.atk_useable['Fireball']=fireball
-mage2.atk_useable['Fireball']=fireball2
-mage.atk_useable['Frost Heal']=frost_heal
-mage2.atk_useable['Frost Heal']=frost_heal2
-mage.atk_useable['Ground Lance']=ground_lance
-mage2.atk_useable['Ground Lance']=ground_lance2
-mage.atk_useable['Explosion']=explosion
-mage2.atk_useable['Explosion']=explosion2
+mage.atk_useableS['Fireball']=fireball
+mage2.atk_useableS['Fireball']=fireball2
+mage.atk_useableS['Frost Heal']=frost_heal
+mage2.atk_useableS['Frost Heal']=frost_heal2
+mage.atk_useableS['Ground Lance']=ground_lance
+mage2.atk_useableS['Ground Lance']=ground_lance2
+mage.atk_useableS['Explosion']=explosion
+mage2.atk_useableS['Explosion']=explosion2
 
 #Class Dictionaries
 playable={}
