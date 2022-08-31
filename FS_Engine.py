@@ -1,5 +1,4 @@
 from logging import PlaceHolder
-from math import ceil
 from opcode import HAVE_ARGUMENT
 import string
 import Class_Character
