@@ -15,7 +15,7 @@ def slow_type(text,typing_speed= 100,new_line=True):
         msvcrt.getch()
 
 os.system('cls')
-print('\nWelcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very impotant territory.\nWhoever wins this battle wins the war. Good luck!')
+slow_type('\nWelcome to Kingdom Fall! Player 1 and Player 2 are on opposite sides of a war.\nYou are going to have a 1v1 for a very important territory.\nWhoever wins this battle wins the war. Good luck!')
 print('\nNOTE: Game is NOT capital letter dependent. You can also type the number associated with the option.')
 
 while True:
@@ -291,4 +291,4 @@ elif player2.HP <= 0:
 else:
     print('\nCombat Error #6969420:\nIf you get this error I (The Developer) know the issue and how to fix it.')
     print('However, no one should get this error unless something went terribly wrong.')
-    print('If you are reading this after looking at my code.\nThank you for being interested in my game!')
+    print('If you are reading this after looking at my code.\nThank you for being interested in my little game!')

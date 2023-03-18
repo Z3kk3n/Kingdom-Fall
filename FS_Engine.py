@@ -204,7 +204,7 @@ def deliberate_miss_attack(player,oplayer) -> None:
     print(f'Stamina - {Class_Character.deliberate_miss.stam_use}\n')
     player.eleven_cooldown(4)
     oplayer.paladin_slow(2)
-    oplayer.deflect(1)
+    player.deflect(1)
 
 def hwacha_attack(player,oplayer) -> None:
     dmg = Class_Character.hwacha.base_dmg * player.atk / oplayer.defn / 4
@@ -303,7 +303,7 @@ def Inv(player,oplayer) -> None:
             return selected_item
 
 def Fight_Opp(player,oplayer) -> None:
-    print("Chose an attack. Type 'Close' to exit or 'None' to cancel your choise.")
+    print("Chose an attack. Type 'Close' to exit or 'None' to cancel your choice.")
     while True:
         selected_atk=None
         for index,attack in enumerate(player.atk_useable):
